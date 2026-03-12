@@ -9,7 +9,17 @@
       "Bash(powershell.exe:*)",
       "Bash(export:*)",
       "WebFetch(domain:brasshands.com)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(winget list:*)",
+      "Bash(npm:*)",
+      "Bash(echo $PATH:*)",
+      "Bash(# Check if the PATH includes the winget package directory in Windows PATH \\(not just git bash\\)\ncmd.exe /c \"echo %PATH%\" 2>&1 | tr ';' '\\\\n' | grep -i -E \"claude|winget|anthropic\" 2>&1)",
+      "Bash(winget show:*)",
+      "Bash(cp:*)",
+      "Bash(winget upgrade:*)",
+      "Bash(npx next:*)",
+      "WebSearch",
+      "Bash(xargs grep:*)"
     ]
   }
 }

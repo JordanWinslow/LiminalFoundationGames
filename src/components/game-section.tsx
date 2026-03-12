@@ -1,0 +1,177 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { SectionHeading } from "./section-heading";
+import { Carousel } from "./carousel";
+
+const featureTags = [
+  "30+ SCPs, Each One Demands a Different Strategy",
+  "No Two Operations Are the Same — 5 Missions Drawn From 8, Randomized Threats",
+  "Choices That Cost Something — Quarantine a Teammate or Risk the Whole Facility",
+  "Turn-Based Tactical Containment — Match Item Traits to SCP Vulnerabilities",
+  "Complete 40–60 Minute Campaign Arcs — Recruit, Equip, Breach, Survive",
+  "SCP Identities Stay Redacted Until You Uncover Their Traits Firsthand",
+];
+
+const carouselSlides = [
+  { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
+  { src: "/images/carousel/concept-missions.webp", alt: "Mission briefing interface", caption: "Fig. 01 — Mission Briefing Interface" },
+  { src: "/images/carousel/combat-ui.webp", alt: "Tactical combat system", caption: "Fig. 02 — Tactical Combat System" },
+  { src: "/images/carousel/facility-map.webp", alt: "Procedural facility layout", caption: "Fig. 03 — Procedural Facility Layout" },
+  { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 04 — In-Game Anomaly Database" },
+  { src: "/images/carousel/location-command.webp", alt: "Mobile command center", caption: "Fig. 05 — Mobile Command Center" },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const },
+  }),
+};
+
+export function GameSection() {
+  return (
+    <section id="games" className="relative z-10 py-24 md:py-40">
+      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.div custom={0} variants={fadeUp}>
+            <SectionHeading index="001" label="Debut Title" className="mb-12" />
+          </motion.div>
+
+          {/* Game carousel — logo as first slide */}
+          <motion.div custom={1} variants={fadeUp} className="mb-12">
+            <Carousel slides={carouselSlides} href="/games/dead-letter-protocol" />
+          </motion.div>
+
+          {/* Two-column layout */}
+          <div className="mb-16 grid gap-10 md:grid-cols-5">
+            <motion.div custom={2} variants={fadeUp} className="md:col-span-3">
+              <p className="text-lg leading-relaxed text-foreground/90 md:text-xl">
+                The most story-rich, lore-dense SCP game ever attempted.
+                30+ anomalies. Branching missions. Foundation secrets that go
+                deeper than any SCP title before it.
+              </p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                SCP: Dead Letter Protocol is a turn-based tactical roguelike
+                set inside Site-19. You&apos;ll navigate randomized missions as
+                containment breaches cascade around you &mdash; recruiting
+                specialists, matching equipment traits to SCP vulnerabilities,
+                and making choices that permanently reshape each operation.
+                Quarantine an infected teammate or gamble on a cure. Sacrifice
+                a D-Class for intel or extract them and lose your lead. Every
+                decision costs something.
+              </p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                This isn&apos;t a game that relies on jump scares. Tension builds
+                through dread &mdash; the slow realization that something is
+                profoundly wrong, the kind of unease that follows you after you
+                close the game. SCP identities are redacted until you research
+                their traits in the field, and every anomaly links directly to
+                its Wiki page. I built this as a faithful extension of the
+                universe, not a loose adaptation. Encountering these entities
+                should feel like reading the best entries on the Wiki &mdash;
+                except you&apos;re there, and the thing in the next room knows it.
+              </p>
+            </motion.div>
+
+            <motion.div custom={3} variants={fadeUp} className="flex flex-col gap-2 md:col-span-2">
+              <p className="text-label mb-2 text-accent">
+                Operational Brief
+              </p>
+              {featureTags.map((tag) => (
+                <div key={tag} className="vfx-hover-line flex items-center gap-3 border-b border-border py-2.5">
+                  <span className="h-1 w-1 bg-accent" />
+                  <span className="text-ui text-foreground/80">
+                    {tag}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* View Complete Intel CTA */}
+          <motion.div custom={3.5} variants={fadeUp} className="mb-16 flex justify-center">
+            <Link
+              href="/games/dead-letter-protocol/"
+              className="vfx-hover-glitch magnetic-btn text-ui inline-flex items-center gap-3 border border-accent/40 bg-accent-muted px-8 py-3.5 text-accent transition-colors hover:border-accent"
+            >
+              View Complete Intel
+              <ChevronRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+
+          {/* Steam — locked achievement style */}
+          <motion.div
+            custom={4}
+            variants={fadeUp}
+            className="mt-12 border border-dashed border-border-bright bg-card/50 px-8 py-8 md:py-10"
+          >
+            <div className="flex flex-col items-center gap-5 text-center md:flex-row md:gap-8 md:text-left">
+              {/* Lock icon */}
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center border border-border bg-background">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-text-dim">
+                  <rect x="3" y="11" width="18" height="11" rx="1" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <p className="text-label mb-1 text-text-dim">
+                  Achievement Locked
+                </p>
+                <p className="text-display text-2xl text-foreground/70">
+                  Steam Page Coming Soon
+                </p>
+                <p className="text-ui-sm mt-1 text-muted-foreground">
+                  Wishlist to be notified at launch &mdash; page goes live during early access
+                </p>
+              </div>
+              <div className="text-ui border border-border-bright px-6 py-2.5 text-text-dim">
+                Pending
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Discord community */}
+          <motion.div
+            custom={5}
+            variants={fadeUp}
+            className="vfx-hover-scan mt-6 border border-border bg-card p-8 md:p-10"
+          >
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex-1">
+                <p className="text-label mb-2 text-accent">
+                  Open Channel
+                </p>
+                <h3 className="text-display mb-2 text-3xl text-foreground">
+                  Join the Community
+                </h3>
+                <p className="max-w-lg leading-relaxed text-muted-foreground">
+                  Playtest upcoming builds, talk directly with the developer,
+                  and connect with like-minded horror enthusiasts who live for
+                  the dread. Your feedback doesn&apos;t just matter &mdash; it
+                  shapes the game.
+                </p>
+              </div>
+              <a
+                href="https://discord.gg/cCQTJFWH"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="vfx-hover-glitch magnetic-btn text-ui flex items-center gap-2 self-start border border-foreground/20 bg-foreground/10 px-8 py-3 text-foreground transition-colors hover:border-accent hover:text-accent md:self-center"
+              >
+                Join Discord
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
