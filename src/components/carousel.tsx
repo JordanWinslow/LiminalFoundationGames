@@ -8,7 +8,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface CarouselProps {
-  slides: { src: string; alt: string; caption?: string; contain?: boolean }[];
+  slides: { src: string; alt: string; caption?: string; contain?: boolean; comingSoon?: boolean }[];
   href?: string;
 }
 
@@ -93,6 +93,13 @@ export function Carousel({ slides, href }: CarouselProps) {
                         className={slide.contain ? "object-contain p-8" : "object-cover"}
                         sizes="(max-width: 1400px) 100vw, 1400px"
                       />
+                      {slide.comingSoon && (
+                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
+                          <span className="text-display text-3xl tracking-[0.25em] text-muted-foreground md:text-5xl">
+                            COMING SOON
+                          </span>
+                        </div>
+                      )}
                     </div>
                     {slide.caption && (
                       <div className="border-t border-border bg-surface px-4 py-2">

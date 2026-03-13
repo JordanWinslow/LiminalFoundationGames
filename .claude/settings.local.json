@@ -19,7 +19,9 @@
       "Bash(winget upgrade:*)",
       "Bash(npx next:*)",
       "WebSearch",
-      "Bash(xargs grep:*)"
+      "Bash(xargs grep:*)",
+      "Bash(nslookup:*)",
+      "Bash(ls:*)"
     ]
   }
 }

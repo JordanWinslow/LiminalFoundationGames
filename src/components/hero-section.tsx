@@ -74,7 +74,7 @@ export function HeroSection() {
   return (
     <section
       ref={containerRef}
-      className="relative z-10 flex min-h-svh flex-col items-center justify-center overflow-hidden bg-background pt-20 pb-16"
+      className="relative z-10 flex min-h-svh flex-col items-center justify-center overflow-hidden bg-background "
     >
       {/* Decorative gradient bars */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -115,18 +115,17 @@ export function HeroSection() {
       </div>
 
       {/* Content — no horizontal padding so banner can be full-bleed on mobile */}
-      <div className="relative z-10 flex w-full flex-col items-center text-center">
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: phase !== "gif" ? 1 : 0, y: phase !== "gif" ? 0 : 20 }}
-          transition={{ duration: 1, ease: "easeInOut" }}
-          className="text-label mb-3 px-6 tracking-[0.3em] text-accent"
-        >
-          Independent Game Studio
-        </motion.p>
-
+      <div className="relative z-10 flex w-full flex-col items-center text-center md:mb-[5%]">
         {/* Banner area — full width, scales prominently for large screens */}
-        <div className="relative w-full max-w-[1600px] aspect-[1.1/1] md:aspect-[2.2/1]">
+        <div className="relative w-full max-w-[1600px] aspect-[1.1/1] md:aspect-[2.5/1]">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: phase !== "gif" ? 1 : 0, y: phase !== "gif" ? 0 : 20 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            className="text-label tracking-[0.3em] text-accent absolute left-1/2 top-[12%] -translate-x-1/2"
+          >
+            Independent Game Studio
+          </motion.p>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: phase === "crossfade" || phase === "banner" ? 1 : 0 }}
@@ -141,16 +140,16 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: phase !== "gif" ? 1 : 0, y: phase !== "gif" ? 0 : 20 }}
           transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
-          className="mt-4 max-w-lg px-6 text-lg leading-relaxed text-muted-foreground"
+          className="max-w-[600px] px-6 md:text-lg leading-relaxed text-muted-foreground md:mb-[5%] mb-[15%]"
         >
-          Dark, methodical games — crafted with obsessive attention to detail.
+          If you like SCP, the Backrooms, and obscure Analog Horror YouTube videos, boy have I got something for you 🖤
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: phase !== "gif" ? 1 : 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeInOut" }}
-          className="mt-2 flex items-center gap-3 px-6"
+          className="flex items-center gap-3 px-6"
         >
           <span className="h-px w-8 bg-accent" />
           <p className="text-label tracking-[0.2em] text-text-dim">

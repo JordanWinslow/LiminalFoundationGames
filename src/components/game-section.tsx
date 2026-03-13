@@ -17,11 +17,11 @@ const featureTags = [
 
 const carouselSlides = [
   { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
-  { src: "/images/carousel/concept-missions.webp", alt: "Mission briefing interface", caption: "Fig. 01 — Mission Briefing Interface" },
-  { src: "/images/carousel/combat-ui.webp", alt: "Tactical combat system", caption: "Fig. 02 — Tactical Combat System" },
-  { src: "/images/carousel/facility-map.webp", alt: "Procedural facility layout", caption: "Fig. 03 — Procedural Facility Layout" },
-  { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 04 — In-Game Anomaly Database" },
-  { src: "/images/carousel/location-command.webp", alt: "Mobile command center", caption: "Fig. 05 — Mobile Command Center" },
+  { src: "/images/carousel/concept-missions.webp", alt: "Mission briefing interface", caption: "Fig. 01 — Mission Briefing Interface", comingSoon: true },
+  { src: "/images/carousel/combat-ui.webp", alt: "Tactical combat system", caption: "Fig. 02 — Tactical Combat System", comingSoon: true },
+  { src: "/images/carousel/facility-map.webp", alt: "Procedural facility layout", caption: "Fig. 03 — Procedural Facility Layout", comingSoon: true },
+  { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 04 — In-Game Anomaly Database", comingSoon: true },
+  { src: "/images/carousel/location-command.webp", alt: "Mobile command center", caption: "Fig. 05 — Mobile Command Center", comingSoon: true },
 ];
 
 const fadeUp = {
@@ -55,19 +55,18 @@ export function GameSection() {
           <div className="mb-16 grid gap-10 md:grid-cols-5">
             <motion.div custom={2} variants={fadeUp} className="md:col-span-3">
               <p className="text-lg leading-relaxed text-foreground/90 md:text-xl">
-                The most story-rich, lore-dense SCP game ever attempted.
-                30+ anomalies. Branching missions. Foundation secrets that go
-                deeper than any SCP title before it.
+                A horror crisis management game where your job isn't to win;<br/> 
+                It's to decide what you're willing to lose.
               </p>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                SCP: Dead Letter Protocol is a turn-based tactical roguelike
-                set inside Site-19. You&apos;ll navigate randomized missions as
-                containment breaches cascade around you &mdash; recruiting
-                specialists, matching equipment traits to SCP vulnerabilities,
-                and making choices that permanently reshape each operation.
-                Quarantine an infected teammate or gamble on a cure. Sacrifice
-                a D-Class for intel or extract them and lose your lead. Every
-                decision costs something.
+              
+  <p className="mt-4 leading-relaxed text-muted-foreground">
+  Dead Letter Protocol is a strategic crisis management game where you manage a secret
+  facility housing some of the most dangerous paranormal entities on the planet. And it's spiraling into chaos.
+  </p>
+    <p className="mt-4 leading-relaxed text-muted-foreground">
+  Investigate anomalies, contain threats, complete missions, and make morally
+  questionable decisions as entropy tears your facility apart. Every playthrough is a unique procedurally generated
+   narrative of survival -- or catastrophic failure.
               </p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
                 This isn&apos;t a game that relies on jump scares. Tension builds
