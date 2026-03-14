@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scripts
+/scripts
+
+# root video files
+/*.mp4
+/*.webm
+/*.gif

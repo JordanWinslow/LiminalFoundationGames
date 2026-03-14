@@ -142,7 +142,7 @@ export function HeroSection() {
           transition={{ duration: 1, delay: 0.3, ease: "easeInOut" }}
           className="max-w-[600px] px-6 md:text-lg leading-relaxed text-muted-foreground md:mb-[5%] mb-[15%]"
         >
-          If you like SCP, the Backrooms, and obscure Analog Horror YouTube videos, boy have I got something for you 🖤
+          If you like SCP, the Backrooms, or obscure Analog Horror YouTube videos, boy have I got something for you 🖤
         </motion.p>
 
         <motion.div

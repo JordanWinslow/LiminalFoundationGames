@@ -7,12 +7,14 @@ import { SectionHeading } from "./section-heading";
 import { Carousel } from "./carousel";
 
 const featureTags = [
-  "30+ SCPs, Each One Demands a Different Strategy",
-  "No Two Operations Are the Same — 5 Missions Drawn From 8, Randomized Threats",
-  "Choices That Cost Something — Quarantine a Teammate or Risk the Whole Facility",
-  "Turn-Based Tactical Containment — Match Item Traits to SCP Vulnerabilities",
-  "Complete 40–60 Minute Campaign Arcs — Recruit, Equip, Breach, Survive",
-  "SCP Identities Stay Redacted Until You Uncover Their Traits Firsthand",
+  "Strategic planning, resource management, and the constant question: what can I afford to ignore this round?",
+  "Procedurally generated narrative: hundreds of encounters, anomalies  & crises assembled into a different story every run",
+  "100+ nightmarish entities with hidden traits, unique dialogue, and multiple paths to resolution -- observe, fight, contain, or talk",
+  "Punishing Turn-Based Combat that rewards knowledge and upfront preparation",
+  "Fate dice system allows you to change predetermined outcomes - at a cost",
+  "Decisions with weight: Save an innocent life or stop an outbreak?",
+  "Legacy progression: unlock new operatives, apocalyptic scenarios, and build a database of every nightmare you've survived"
+  // "100+ Tactical & thematic items ranging from allies to technology that can bend or break the rules",
 ];
 
 const carouselSlides = [
@@ -54,31 +56,34 @@ export function GameSection() {
           {/* Two-column layout */}
           <div className="mb-16 grid gap-10 md:grid-cols-5">
             <motion.div custom={2} variants={fadeUp} className="md:col-span-3">
-              <p className="text-lg leading-relaxed text-foreground/90 md:text-xl">
-                A horror crisis management game where your job isn't to win;<br/> 
-                It's to decide what you're willing to lose.
+              <p className="text-lg leading-relaxed text-foreground/90 md:text-xl max-w-160">
+                A turn-based crisis management game where your job isn't to win -- it's to decide what you're willing to lose."
               </p>
               
   <p className="mt-4 leading-relaxed text-muted-foreground">
-  Dead Letter Protocol is a strategic crisis management game where you manage a secret
-  facility housing some of the most dangerous paranormal entities on the planet. And it's spiraling into chaos.
+  Beyond any government's reach, a secret organization maintains a global network of facilities containing the most
+  dangerous supernatural threats on Earth: things that could reshape reality, corrode sanity, or destroy entire nations if they breach
+  containment.</p>
+  
+  <p className="mt-4 leading-relaxed text-muted-foreground">
+    And you just accepted a position you can't quit. Congratulations operative. Welcome to Site-19.
   </p>
     <p className="mt-4 leading-relaxed text-muted-foreground">
-  Investigate anomalies, contain threats, complete missions, and make morally
-  questionable decisions as entropy tears your facility apart. Every playthrough is a unique procedurally generated
-   narrative of survival -- or catastrophic failure.
+  Investigate anomalies, contain threats, and make morally
+    questionable decisions as entropy tears your facility apart.
+    Choose your apocalypse: every scenario pits you against a
+    different existential threat, and every playthrough is a unique
+    procedurally generated narrative of survival or catastrophic
+    failure.
               </p>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                This isn&apos;t a game that relies on jump scares. Tension builds
-                through dread &mdash; the slow realization that something is
-                profoundly wrong, the kind of unease that follows you after you
-                close the game. SCP identities are redacted until you research
-                their traits in the field, and every anomaly links directly to
-                its Wiki page. I built this as a faithful extension of the
-                universe, not a loose adaptation. Encountering these entities
-                should feel like reading the best entries on the Wiki &mdash;
-                except you&apos;re there, and the thing in the next room knows it.
-              </p>
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          No jumpscares. No grinding. Just the mounting pressure of a facility that's
+  falling apart faster than you can hold it together. Reinforce the breach or pursue
+  the objective. Recruit an ally or stockpile for what's coming. Spend the round
+  investigating or pray that ignoring the anomaly doesn't cost you the mission. Every
+  decision costs something. Every round, the list of things you can't afford to lose
+  gets shorter.
+        </p>
             </motion.div>
 
             <motion.div custom={3} variants={fadeUp} className="flex flex-col gap-2 md:col-span-2">
