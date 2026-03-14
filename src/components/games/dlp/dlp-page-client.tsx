@@ -95,8 +95,8 @@ export function DLPPageClient() {
               variants={fadeUp}
               className="mb-4 max-w-2xl text-xl leading-relaxed text-foreground/90 md:text-2xl"
             >
-              You&apos;re not fighting the monsters.
-              You&apos;re managing the disaster.
+              Your job isn&apos;t to win. It&apos;s to decide what
+              you&apos;re willing to lose.
             </motion.p>
 
             <motion.p
@@ -104,10 +104,10 @@ export function DLPPageClient() {
               variants={fadeUp}
               className="mb-8 max-w-2xl leading-relaxed text-muted-foreground"
             >
-              Manage a Foundation facility spiraling into chaos. Make
-              impossible choices as entropy tears your site apart. Every
-              playthrough generates a unique narrative of survival -- or
-              catastrophic failure.
+              Investigate anomalies, fight nightmarish entities, and make
+              impossible choices as entropy tears your facility apart. Every
+              playthrough is a unique procedurally generated narrative of
+              survival -- or catastrophic failure.
             </motion.p>
 
             <motion.div custom={5} variants={fadeUp}>
