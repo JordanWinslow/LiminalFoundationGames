@@ -35,7 +35,7 @@ export const dlpSections: DLPSection[] = [
       "Each round follows a four-phase cycle. You act. A narrative event unfolds. Anomalies escalate. The facility decays. Then the cycle begins again -- except now everything is worse than before.",
     detail: [
       "During the Player Phase, you navigate the facility map, choosing what to prioritize: investigate a location, shop for equipment, talk to Foundation staff, or pursue mission objectives. You never have enough time to do everything, and the three phases that follow don't wait for you.",
-      "The Encounter Phase triggers a procedural narrative event. The Anomaly Phase advances every active SCP threat. The Entropy Phase degrades the facility itself. Every phase that isn't yours is the situation getting worse.",
+      "The Encounter Phase triggers a procedural narrative event at your location. The Anomaly Phase advances every active SCP threat -- countdowns tick, entities activate, containment deteriorates. The Entropy Phase degrades the facility itself: lockdowns engage, systems fail, and the entropy meter pushes closer to critical. Every phase that isn't yours is the situation getting worse.",
     ],
     images: [],
   },
@@ -50,6 +50,7 @@ export const dlpSections: DLPSection[] = [
     detail: [
       "Encounters are self-contained narrative vignettes that deliver atmosphere, worldbuilding, and tangible consequences. Some are quiet and strange. Others force immediate decisions with lasting impact. The game never punishes you for showing up -- but it always makes you pay for ambition.",
       "The Fate dice system lets you change predetermined outcomes -- at a cost. When a situation calls for a skill test, you roll against your operative's stats with full transparency: difficulty, modifiers, and consequences all visible before you commit.",
+      "Encounters blend the SCP Foundation's signature atmosphere of bureaucratic absurdity, existential dread, and dark humor. One round you're reading a passive-aggressive memo about break room etiquette. The next you're deciding whether to open a door that's breathing.",
     ],
     images: [],
   },
@@ -60,10 +61,11 @@ export const dlpSections: DLPSection[] = [
     categoryVariant: "classified",
     title: "SCP Containment & Combat",
     summary:
-      "Every anomaly starts redacted. Its name is black bars. Its weaknesses are hidden. You have to get close enough to learn what you're fighting -- and everything you learn, you learn the hard way.",
+      "When you encounter an SCP, combat begins. Every anomaly starts redacted -- its name is black bars, its designation reads SCP-[REDACTED], its weaknesses are hidden. You have to get close enough to learn what you're fighting. And everything you learn, you learn the hard way.",
     detail: [
-      "Each SCP has hidden traits that define its vulnerabilities. Reveal them through observation, conversation, and deploying items with matching properties. Items with matching traits are devastating. A mismatched loadout barely scratches it.",
-      "Four paths to resolution: observe to uncover hidden traits, fight to overwhelm it, contain it by building the vulnerability gauge, or talk -- branching dialogue that can reveal intelligence, shift the balance, or backfire catastrophically. Punishing turn-based combat that rewards knowledge and upfront preparation.",
+      "Each SCP has hidden traits that define its vulnerabilities. Reveal them through observation, successful conversation, and deploying items with matching properties. Items with matching traits are devastating. Mismatched equipment barely scratches it. The difference between preparation and improvisation is the difference between containment and a body count.",
+      "Your options each turn: ATTACK toward the destroy threshold. DEFEND against incoming harm. OBSERVE to uncover hidden traits and build the vulnerability gauge. USE ITEM to deploy your equipment. TALK to engage the anomaly in branching dialogue -- a conversation that can reveal critical intelligence, shift the vulnerability gauge, or backfire catastrophically. Sometimes the SCP initiates a Decision: a narrative choice forced on you mid-combat where every option has a cost.",
+      "Two paths to resolution: destroy the anomaly by overwhelming it, or contain it by building the vulnerability gauge to 100% and executing a containment protocol. Every SCP fights differently based on its real Wiki lore. Every SCP can talk to you. And some of the things they say will make you wish they couldn't.",
     ],
     images: [],
   },
@@ -76,8 +78,8 @@ export const dlpSections: DLPSection[] = [
     summary:
       "Entropy is the game's dread clock. It doesn't tick down to a boss fight -- it ticks up toward irreversible failure. Every round, the facility gets worse. You can slow it. You can never stop it.",
     detail: [
-      "At low entropy, the facility is unstable but manageable. As it climbs, lockdowns seal critical locations, cascading failures trigger across multiple wings, and entropy events grow catastrophic. At 100%, the facility is lost and everyone still inside it.",
-      "Reinforce the breach or pursue the objective. Recruit an ally or stockpile for what's coming. Investigate the anomaly or pray that ignoring it doesn't cost you the mission. Everything demands your attention and you don't have enough time.",
+      "At low entropy, the facility is unstable but manageable. As it climbs, lockdowns seal critical locations, cascading failures trigger across multiple wings, and entropy events grow catastrophic. At 100%, the facility is lost and everyone still inside it. The facility spans containment blocks, research labs, medical bays, armories, and the command center -- each offering resources you need and harboring threats you can't afford to ignore.",
+      "Reinforce the breach or pursue the objective. Recruit an ally or stockpile for what's coming. Spend the round investigating or pray that ignoring the anomaly doesn't cost you the mission. Everything demands your attention and you don't have enough time.",
     ],
     images: [],
   },
@@ -90,7 +92,7 @@ export const dlpSections: DLPSection[] = [
     summary:
       "Each campaign is a K-Class scenario -- a specific way the world might end. Missions are drawn from a larger pool, each a self-contained operation with its own objectives, narrative, and moral weight. No two campaigns follow the same path.",
     detail: [
-      "K-Class scenarios define the apocalypse you're trying to prevent. Within each scenario, missions are randomly selected from a larger pool. Every playthrough assembles a different combination of crises. Some objectives are timed -- fail to complete them and they auto-fail, with consequences that ripple through your operation.",
+      "K-Class scenarios define the apocalypse you're trying to prevent. Within each scenario, missions are randomly selected from a larger pool. Every playthrough assembles a different combination of crises. Some objectives are timed -- fail to complete them and they auto-fail, with consequences that ripple through your operation. Save an innocent life or stop an outbreak? The game always makes you choose.",
       "Win by completing enough missions and keeping entropy under control. Lose by letting your health, your composure, or the facility reach zero. The game doesn't expect you to save everyone. It expects you to decide who you can't.",
     ],
     images: [],
@@ -104,8 +106,8 @@ export const dlpSections: DLPSection[] = [
     summary:
       "100+ entities drawn from the SCP Wiki. Each starts behind Foundation redaction -- black bars hiding everything that matters. Discover traits through observation, conversation, and investigation. When the black bars finally lift, understand why it was classified in the first place.",
     detail: [
-      "The database tracks every anomaly you encounter -- which traits you've revealed, what worked, and how it ended. Each trait you uncover makes your equipment more effective and your strategy more precise.",
-      "The game never assumes you know the SCP universe. Every anomaly can be fully understood through in-game investigation alone. But players who recognize the signs will feel the dread before the reveal confirms it.",
+      "The database tracks every anomaly you encounter -- which traits you've revealed, what worked, and how the encounter ended. Each trait you uncover makes your equipment more effective in combat and your strategy more precise. The moment the last trait clicks and the SCP's true identity emerges from behind the redaction is one of the game's most powerful moments.",
+      "The game never assumes you know the SCP universe. Every anomaly can be fully understood through in-game investigation alone. But players who recognize the signs -- who know what it means when the lights flicker a certain way, or when something offers to cure you -- will feel the dread before the reveal confirms it.",
     ],
     images: [],
   },
@@ -116,9 +118,9 @@ export const dlpSections: DLPSection[] = [
     categoryVariant: "active",
     title: "Arsenal, Personnel & Legacy",
     summary:
-      "Tactical item cards across six types: weapons, equipment, consumables, allies, utilities, and technology. Trait matching determines everything -- a weapon aligned with an SCP's vulnerabilities ends the threat. A mismatched loadout is a death sentence disguised as preparation.",
+      "Tactical item cards across six types: weapons, equipment, consumables, allies, utilities, and technology. Trait matching determines everything in combat -- a weapon aligned with an SCP's vulnerabilities can end the threat. A mismatched loadout is a death sentence disguised as preparation.",
     detail: [
-      "Weapons and combat utilities carry traits for engaging anomalies. Equipment provides passive bonuses. Consumables offer powerful one-time effects. Allies fight alongside you with their own abilities and dialogue. Foundation personnel populate the facility with intel, warnings, and sometimes unexpected help.",
+      "Weapons and combat utilities carry traits and destroy or contain values -- your tools for directly engaging anomalies. Equipment provides passive stat bonuses. Consumables offer powerful one-time effects when you need them most. Allies fight alongside you with their own health, abilities, and dialogue. Facility shops let you spend credits on new equipment, and the right acquisition before a dangerous fight can mean the difference between a contained anomaly and a body count.",
       "Legacy progression unlocks new operatives, apocalyptic scenarios, and builds a database of every nightmare you've survived. Each campaign tells a complete story. The unlocks don't make you more powerful -- they give you new nightmares to survive.",
     ],
     images: [],
