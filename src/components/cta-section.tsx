@@ -29,12 +29,36 @@ const fadeUp = {
 export function CTASection() {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log("Mailing list signup:", email);
-    setSubmitted(true);
-    setEmail("");
+    setError("");
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, _hp: honeypot }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Something went wrong. Try again.");
+        return;
+      }
+
+      setSubmitted(true);
+      setEmail("");
+    } catch {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -157,23 +181,41 @@ export function CTASection() {
               ) : (
                 <form
                   onSubmit={handleSubmit}
-                  className="flex flex-col gap-4 sm:flex-row"
+                  className="flex flex-col gap-4"
                 >
+                  {/* Honeypot — invisible to real users, catches bots */}
                   <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="your@email.com"
-                    className="h-12 flex-1 border border-border bg-background px-4 font-mono text-foreground placeholder:text-text-dim focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+                    type="text"
+                    name="_hp"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] h-0 w-0 opacity-0"
                   />
-                  <button
-                    type="submit"
-                    className="vfx-hover-glitch magnetic-btn text-ui flex h-12 items-center gap-2 bg-accent px-8 text-accent-foreground transition-colors hover:bg-accent-hover"
-                  >
-                    <Send className="h-3.5 w-3.5" />
-                    Subscribe
-                  </button>
+                  <div className="flex flex-col gap-4 sm:flex-row">
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      disabled={loading}
+                      className="h-12 flex-1 border border-border bg-background px-4 font-mono text-foreground placeholder:text-text-dim focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent disabled:opacity-50"
+                    />
+                    <button
+                      type="submit"
+                      disabled={loading}
+                      className="vfx-hover-glitch magnetic-btn text-ui flex h-12 items-center gap-2 bg-accent px-8 text-accent-foreground transition-colors hover:bg-accent-hover disabled:opacity-50"
+                    >
+                      <Send className="h-3.5 w-3.5" />
+                      {loading ? "Transmitting..." : "Subscribe"}
+                    </button>
+                  </div>
+                  {error && (
+                    <p className="text-ui text-sm text-red-400">{error}</p>
+                  )}
                 </form>
               )}
             </motion.div>

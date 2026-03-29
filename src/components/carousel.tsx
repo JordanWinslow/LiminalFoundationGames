@@ -6,9 +6,21 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { VideoSlide } from "./video-slide";
+
+export interface CarouselSlide {
+  /** Image source path */
+  src?: string;
+  /** Video sources — when provided, renders a <video> instead of <img> */
+  video?: { mp4: string; webm?: string; poster?: string };
+  alt: string;
+  caption?: string;
+  contain?: boolean;
+  comingSoon?: boolean;
+}
 
 interface CarouselProps {
-  slides: { src: string; alt: string; caption?: string; contain?: boolean; comingSoon?: boolean }[];
+  slides: CarouselSlide[];
   href?: string;
 }
 
@@ -83,16 +95,27 @@ export function Carousel({ slides, href }: CarouselProps) {
           <div ref={emblaRef} className="overflow-hidden">
             <div className="flex">
               {slides.map((slide, i) => {
+                const isVideo = !!slide.video;
                 const slideContent = (
                   <>
                     <div className={`scan-lines relative aspect-video ${slide.contain ? "bg-background" : ""}`}>
-                      <Image
-                        src={slide.src}
-                        alt={slide.alt}
-                        fill
-                        className={slide.contain ? "object-contain p-8" : "object-cover"}
-                        sizes="(max-width: 1400px) 100vw, 1400px"
-                      />
+                      {isVideo ? (
+                        <VideoSlide
+                          mp4={slide.video!.mp4}
+                          webm={slide.video!.webm}
+                          poster={slide.video!.poster}
+                          alt={slide.alt}
+                          isActive={i === selectedIndex}
+                        />
+                      ) : (
+                        <Image
+                          src={slide.src!}
+                          alt={slide.alt}
+                          fill
+                          className={slide.contain ? "object-contain p-8" : "object-cover"}
+                          sizes="(max-width: 1400px) 100vw, 1400px"
+                        />
+                      )}
                       {slide.comingSoon && (
                         <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
                           <span className="text-display text-3xl tracking-[0.25em] text-muted-foreground md:text-5xl">

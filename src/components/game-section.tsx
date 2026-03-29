@@ -7,19 +7,26 @@ import { SectionHeading } from "./section-heading";
 import { Carousel } from "./carousel";
 
 const featureTags = [
-  "Strategic planning, resource management, and the constant question: what can I afford to ignore this round?",
-  "Procedurally generated narrative: hundreds of encounters, anomalies  & crises assembled into a different story every run",
-  "100+ nightmarish entities with hidden traits, unique dialogue, and multiple paths to resolution -- observe, fight, contain, or talk",
-  "Punishing Turn-Based Combat that rewards knowledge and upfront preparation",
-  "Fate dice system allows you to change predetermined outcomes - at a cost",
-  "Decisions with weight: Save an innocent life or stop an outbreak?",
-  "Legacy progression: unlock new operatives, apocalyptic scenarios, and build a database of every nightmare you've survived"
-  // "100+ Tactical & thematic items ranging from allies to technology that can bend or break the rules",
+  "100+ creatures drawn from the SCP Wiki — hidden traits, unique dialogue, and multiple paths to resolution",
+  "Every creature starts classified. Match hidden vulnerabilities or your best gear barely registers",
+  "Contain creatures to permanently document them. Knowledge carries between runs — not power",
+  "Escalating entropy: lockdowns, crises, and a final boss that arrives whether you're ready or not",
+  "Procedural narrative — hundreds of encounters assembled into a different story every run",
 ];
 
-const carouselSlides = [
+import type { CarouselSlide } from "./carousel";
+
+const carouselSlides: CarouselSlide[] = [
   { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
-  { src: "/images/carousel/concept-missions.webp", alt: "Mission briefing interface", caption: "Fig. 01 — Mission Briefing Interface", comingSoon: true },
+  {
+    video: {
+      mp4: "/videos/carousel/map-movement.mp4",
+      webm: "/videos/carousel/map-movement.webm",
+      poster: "/videos/carousel/map-movement-poster.webp",
+    },
+    alt: "Facility map movement gameplay",
+    caption: "Fig. 01 — Procedural Facility Navigation",
+  },
   { src: "/images/carousel/combat-ui.webp", alt: "Tactical combat system", caption: "Fig. 02 — Tactical Combat System", comingSoon: true },
   { src: "/images/carousel/facility-map.webp", alt: "Procedural facility layout", caption: "Fig. 03 — Procedural Facility Layout", comingSoon: true },
   { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 04 — In-Game Anomaly Database", comingSoon: true },
@@ -57,33 +64,27 @@ export function GameSection() {
           <div className="mb-16 grid gap-10 md:grid-cols-5">
             <motion.div custom={2} variants={fadeUp} className="md:col-span-3">
               <p className="text-lg leading-relaxed text-foreground/90 md:text-xl max-w-160">
-                A turn-based crisis management game where your job isn't to win -- it's to decide what you're willing to lose."
+                Something is wrong inside Site-19. Something worse is happening
+                outside. A punishing strategic horror game where every run
+                creates a story no other player has lived.
               </p>
-              
-  <p className="mt-4 leading-relaxed text-muted-foreground">
-  Beyond any government's reach, a secret organization maintains a global network of facilities containing the most
-  dangerous supernatural threats on Earth: things that could reshape reality, corrode sanity, or destroy entire nations if they breach
-  containment.</p>
-  
-  <p className="mt-4 leading-relaxed text-muted-foreground">
-    And you just accepted a position you can't quit. Congratulations operative. Welcome to Site-19.
-  </p>
-    <p className="mt-4 leading-relaxed text-muted-foreground">
-  Investigate anomalies, contain threats, and make morally
-    questionable decisions as entropy tears your facility apart.
-    Choose your apocalypse: every scenario pits you against a
-    different existential threat, and every playthrough is a unique
-    procedurally generated narrative of survival or catastrophic
-    failure.
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                There&apos;s a threat beyond the facility walls. Poorly
+                understood, escalating, and harder to stop the longer it goes
+                unchecked. Investigate it. Weaken it across three missions. Then
+                face off with it in a final mission before it becomes
+                unstoppable.
               </p>
-        <p className="mt-4 leading-relaxed text-muted-foreground">
-          No jumpscares. No grinding. Just the mounting pressure of a facility that's
-  falling apart faster than you can hold it together. Reinforce the breach or pursue
-  the objective. Recruit an ally or stockpile for what's coming. Spend the round
-  investigating or pray that ignoring the anomaly doesn't cost you the mission. Every
-  decision costs something. Every round, the list of things you can't afford to lose
-  gets shorter.
-        </p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                The facility you&apos;re operating from is its own disaster:
+                containment failing, threats in the corridors, and a situation
+                that deteriorates every round whether you&apos;re paying
+                attention or not.
+              </p>
+              <p className="mt-4 leading-relaxed text-muted-foreground">
+                No jumpscares. No grinding. No two runs that tell the same
+                story.
+              </p>
             </motion.div>
 
             <motion.div custom={3} variants={fadeUp} className="flex flex-col gap-2 md:col-span-2">
@@ -92,7 +93,7 @@ export function GameSection() {
               </p>
               {featureTags.map((tag) => (
                 <div key={tag} className="vfx-hover-line flex items-center gap-3 border-b border-border py-2.5">
-                  <span className="h-1 w-1 bg-accent" />
+                  <span className="h-1.5 w-1.5 shrink-0 bg-accent" />
                   <span className="text-ui text-foreground/80">
                     {tag}
                   </span>
