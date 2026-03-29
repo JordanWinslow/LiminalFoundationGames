@@ -33,8 +33,8 @@ export function Footer() {
               <a href="/#about" className="text-ui text-muted-foreground transition-colors hover:text-foreground">
                 About
               </a>
-              <a href="/#contact" className="text-ui text-muted-foreground transition-colors hover:text-foreground">
-                Contact
+              <a href="/#connect" className="text-ui text-muted-foreground transition-colors hover:text-foreground">
+                Connect
               </a>
             </div>
           </div>
