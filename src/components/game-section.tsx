@@ -20,17 +20,42 @@ const carouselSlides: CarouselSlide[] = [
   { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
   {
     video: {
-      mp4: "/videos/carousel/map-movement.mp4",
-      webm: "/videos/carousel/map-movement.webm",
-      poster: "/videos/carousel/map-movement-poster.webp",
+      mp4: "/videos/carousel/mission-advancement.mp4",
+      webm: "/videos/carousel/mission-advancement.webm",
+      poster: "/videos/carousel/mission-advancement-poster.webp",
     },
-    alt: "Facility map movement gameplay",
-    caption: "Fig. 01 — Procedural Facility Navigation",
+    alt: "Mission advancement gameplay",
+    caption: "Fig. 01 — Mission Advancement",
   },
-  { src: "/images/carousel/combat-ui.webp", alt: "Tactical combat system", caption: "Fig. 02 — Tactical Combat System", comingSoon: true },
-  { src: "/images/carousel/facility-map.webp", alt: "Procedural facility layout", caption: "Fig. 03 — Procedural Facility Layout", comingSoon: true },
-  { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 04 — In-Game Anomaly Database", comingSoon: true },
-  { src: "/images/carousel/location-command.webp", alt: "Mobile command center", caption: "Fig. 05 — Mobile Command Center", comingSoon: true },
+  {
+    video: {
+      mp4: "/videos/carousel/phases.mp4",
+      webm: "/videos/carousel/phases.webm",
+      poster: "/videos/carousel/phases-poster.webp",
+    },
+    alt: "Four-phase round cycle gameplay",
+    caption: "Fig. 02 — The Four-Phase Round",
+  },
+  {
+    video: {
+      mp4: "/videos/carousel/redaction.mp4",
+      webm: "/videos/carousel/redaction.webm",
+      poster: "/videos/carousel/redaction-poster.webp",
+    },
+    alt: "SCP redaction and trait reveal",
+    caption: "Fig. 03 — SCP Redaction & Combat",
+  },
+  {
+    video: {
+      mp4: "/videos/carousel/combat.mp4",
+      webm: "/videos/carousel/combat.webm",
+      poster: "/videos/carousel/combat-poster.webp",
+    },
+    alt: "SCP creature art and combat VFX",
+    caption: "Fig. 04 — SCP Combat & VFX",
+  },
+  { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 05 — In-Game Anomaly Database", comingSoon: true },
+  { src: "/images/carousel/location-command.webp", alt: "Mobile command center", caption: "Fig. 06 — Mobile Command Center", comingSoon: true },
 ];
 
 const fadeUp = {

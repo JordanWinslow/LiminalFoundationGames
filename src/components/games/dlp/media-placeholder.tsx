@@ -12,7 +12,41 @@ const fadeUp = {
   },
 };
 
-export function MediaPlaceholder({ label }: { label: string }) {
+interface MediaSlotProps {
+  label: string;
+  video?: {
+    mp4: string;
+    webm: string;
+    poster: string;
+  };
+}
+
+export function MediaPlaceholder({ label, video }: MediaSlotProps) {
+  if (video) {
+    return (
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
+        variants={fadeUp}
+        className="max-w-3xl overflow-hidden border border-border"
+      >
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={video.poster}
+          aria-label={label}
+          className="aspect-video w-full object-cover"
+        >
+          <source src={video.webm} type="video/webm" />
+          <source src={video.mp4} type="video/mp4" />
+        </video>
+      </motion.div>
+    );
+  }
+
   return (
     <motion.div
       initial="hidden"

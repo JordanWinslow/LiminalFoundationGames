@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { ClassifiedBadge } from "@/components/classified-badge";
 import { SteamFeatureBlock } from "./steam-feature-block";
+import { GameLoopDiagram } from "./game-loop-diagram";
 import { MediaPlaceholder } from "./media-placeholder";
 import { steamSections } from "./dlp-sections-data";
 
@@ -83,8 +84,12 @@ export function DLPPageClient() {
           {steamSections.map((section) => (
             <div key={section.id} className="space-y-10">
               <SteamFeatureBlock section={section} />
+              {section.id === "phases" && <GameLoopDiagram />}
               {section.media && (
-                <MediaPlaceholder label={section.media.label} />
+                <MediaPlaceholder
+                  label={section.media.label}
+                  video={section.media.video}
+                />
               )}
             </div>
           ))}

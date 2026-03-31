@@ -11,7 +11,7 @@ let introPlayedOnce = false;
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
-  const { theme } = useTheme();
+  const { theme, mounted } = useTheme();
   const [phase, setPhase] = useState<"gif" | "crossfade" | "banner">(
     introPlayedOnce ? "banner" : "gif"
   );
@@ -27,8 +27,11 @@ export function HeroSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fetch GIF as blob so animation starts from frame 0 when displayed
+  // Fetch GIF as blob so animation starts from frame 0 when displayed.
+  // Wait for theme provider to mount so we fetch the correct variant.
   useEffect(() => {
+    if (!mounted) return;
+
     const url =
       theme === "dark"
         ? "/images/brand/avatar-dark.gif"
@@ -52,7 +55,7 @@ export function HeroSection() {
         gifUrlRef.current = null;
       }
     };
-  }, [theme]);
+  }, [theme, mounted]);
 
   // Start timers only on first load — skip intro on client-side navigations back
   useEffect(() => {

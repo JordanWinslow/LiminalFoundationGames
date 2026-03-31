@@ -10,6 +10,11 @@ export interface SteamSection {
   subsections?: SteamSubsection[];
   media?: {
     label: string;
+    video?: {
+      mp4: string;
+      webm: string;
+      poster: string;
+    };
   };
 }
 
@@ -21,8 +26,12 @@ export const steamSections: SteamSection[] = [
       "There's a threat beyond the facility walls. Poorly understood, escalating, and harder to stop the longer it goes unchecked. Investigate it. Weaken it across three missions. Then face off with it in a final mission before it becomes unstoppable. The facility you're operating from is its own disaster: containment failing, threats in the corridors, and a situation that deteriorates every round whether you're paying attention or not.",
     ],
     media: {
-      label:
-        "GIF: Facility map, player choosing actions, movement, phase cycle advancing",
+      label: "Mission advancement gameplay",
+      video: {
+        mp4: "/videos/carousel/mission-advancement.mp4",
+        webm: "/videos/carousel/mission-advancement.webm",
+        poster: "/videos/carousel/mission-advancement-poster.webp",
+      },
     },
   },
   {
@@ -48,8 +57,12 @@ export const steamSections: SteamSection[] = [
       },
     ],
     media: {
-      label:
-        "GIF: Combat, redacted creature, observation, trait reveal, dialogue",
+      label: "Four-phase round cycle gameplay",
+      video: {
+        mp4: "/videos/carousel/phases.mp4",
+        webm: "/videos/carousel/phases.webm",
+        poster: "/videos/carousel/phases-poster.webp",
+      },
     },
   },
   {
@@ -59,8 +72,12 @@ export const steamSections: SteamSection[] = [
       "Every creature starts classified. Name, traits, weaknesses: all black bars. Equipment is locked before the fight. Match a creature's hidden vulnerabilities and your weapons hit like they were built for this. Miss, and your best gear barely registers. Observe it. Talk to it. Branching dialogue can crack the fight open or make it worse. Destroy it, or contain it and add it to a permanent database that carries between runs. Contained creatures reveal their full profiles forever, and knowing what you're fighting next time changes everything.",
     ],
     media: {
-      label:
-        "GIF: Database, black bars lifting, operative selection, scenario unlock",
+      label: "SCP redaction, trait reveal, database, combat",
+      video: {
+        mp4: "/videos/carousel/redaction.mp4",
+        webm: "/videos/carousel/redaction.webm",
+        poster: "/videos/carousel/redaction-poster.webp",
+      },
     },
   },
   {
