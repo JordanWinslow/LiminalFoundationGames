@@ -39,10 +39,19 @@ export function Carousel({ slides, href }: CarouselProps) {
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
-    setSelectedIndex(emblaApi.selectedScrollSnap());
+    const index = emblaApi.selectedScrollSnap();
+    setSelectedIndex(index);
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
-  }, [emblaApi]);
+
+    // Stop autoplay for video slides (let the video's onEnded advance instead)
+    // Resume autoplay for image slides
+    if (slides[index]?.video) {
+      autoplayPlugin.current.stop();
+    } else {
+      autoplayPlugin.current.play();
+    }
+  }, [emblaApi, slides]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -106,6 +115,8 @@ export function Carousel({ slides, href }: CarouselProps) {
                           poster={slide.video!.poster}
                           alt={slide.alt}
                           isActive={i === selectedIndex}
+                          shouldLoop={false}
+                          onEnded={() => emblaApi?.scrollNext()}
                         />
                       ) : (
                         <Image
@@ -160,7 +171,7 @@ export function Carousel({ slides, href }: CarouselProps) {
         <button
           onClick={scrollPrev}
           onMouseEnter={() => autoplayPlugin.current.stop()}
-          onMouseLeave={() => autoplayPlugin.current.play()}
+          onMouseLeave={() => { if (!slides[selectedIndex]?.video) autoplayPlugin.current.play(); }}
           disabled={!canScrollPrev}
           className="flex h-12 w-12 items-center justify-center border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-30 md:opacity-0 md:group-hover:opacity-100"
           style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}
@@ -173,7 +184,7 @@ export function Carousel({ slides, href }: CarouselProps) {
         <button
           onClick={scrollNext}
           onMouseEnter={() => autoplayPlugin.current.stop()}
-          onMouseLeave={() => autoplayPlugin.current.play()}
+          onMouseLeave={() => { if (!slides[selectedIndex]?.video) autoplayPlugin.current.play(); }}
           disabled={!canScrollNext}
           className="flex h-12 w-12 items-center justify-center border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-30 md:opacity-0 md:group-hover:opacity-100"
           style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}

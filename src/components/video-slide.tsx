@@ -13,13 +13,17 @@ interface VideoSlideProps {
   alt: string;
   /** Whether this slide is currently active/visible */
   isActive?: boolean;
+  /** Whether the video should loop (default true) */
+  shouldLoop?: boolean;
+  /** Callback when video finishes playing (only fires if shouldLoop is false) */
+  onEnded?: () => void;
 }
 
 /**
  * A video element that behaves like a GIF — autoplay, muted, looping.
  * Lazy-loads via IntersectionObserver and pauses when not visible.
  */
-export function VideoSlide({ mp4, webm, poster, alt, isActive }: VideoSlideProps) {
+export function VideoSlide({ mp4, webm, poster, alt, isActive, shouldLoop = true, onEnded }: VideoSlideProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const hasLoaded = useRef(false);
 
@@ -29,13 +33,24 @@ export function VideoSlide({ mp4, webm, poster, alt, isActive }: VideoSlideProps
     if (!video || !hasLoaded.current) return;
 
     if (isActive) {
+      // Reset to start when becoming active (important for non-looping videos)
+      if (!shouldLoop) video.currentTime = 0;
       video.play().catch(() => {
         // Autoplay blocked — fine, poster is visible
       });
     } else {
       video.pause();
     }
-  }, [isActive]);
+  }, [isActive, shouldLoop]);
+
+  // Fire onEnded callback when video finishes
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !onEnded) return;
+    const handler = () => onEnded();
+    video.addEventListener("ended", handler);
+    return () => video.removeEventListener("ended", handler);
+  }, [onEnded]);
 
   // Lazy load: only set sources when element enters viewport
   useEffect(() => {
@@ -69,7 +84,7 @@ export function VideoSlide({ mp4, webm, poster, alt, isActive }: VideoSlideProps
       ref={videoRef}
       autoPlay
       muted
-      loop
+      loop={shouldLoop}
       playsInline
       poster={poster}
       preload="none"

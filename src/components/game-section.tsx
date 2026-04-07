@@ -7,11 +7,11 @@ import { SectionHeading } from "./section-heading";
 import { Carousel } from "./carousel";
 
 const featureTags = [
-  "100+ creatures drawn from the SCP Wiki — hidden traits, unique dialogue, and multiple paths to resolution",
-  "Every creature starts classified. Match hidden vulnerabilities or your best gear barely registers",
-  "Contain creatures to permanently document them. Knowledge carries between runs — not power",
-  "Escalating entropy: lockdowns, crises, and a final boss that arrives whether you're ready or not",
-  "Procedural narrative — hundreds of encounters assembled into a different story every run",
+  "Strategic horror built around the hour-long run. Play it once to see what happens. Play it again because now you know what went wrong",
+  "100+ classified creatures. Hidden traits. Branching dialogue. Multiple resolutions",
+  "A combat system built on information, not stats. Know the creature or lose to it",
+  "Every round has four phases. Only one belongs to you. The other three belong to the facility",
+  "Permanent creature database. Contain it once, know it forever",
 ];
 
 import type { CarouselSlide } from "./carousel";
@@ -82,33 +82,27 @@ export function GameSection() {
 
           {/* Game carousel — logo as first slide */}
           <motion.div custom={1} variants={fadeUp} className="mb-12">
-            <Carousel slides={carouselSlides} href="/games/dead-letter-protocol" />
+            <Carousel slides={carouselSlides} href="/scp-dead-letter-protocol" />
           </motion.div>
 
           {/* Two-column layout */}
           <div className="mb-16 grid gap-10 md:grid-cols-5">
             <motion.div custom={2} variants={fadeUp} className="md:col-span-3">
               <p className="text-lg leading-relaxed text-foreground/90 md:text-xl max-w-160">
-                Something is wrong inside Site-19. Something worse is happening
-                outside. A punishing strategic horror game where every run
-                creates a story no other player has lived.
+                Something is wrong inside Site-19. Something worse is out
+                there. A strategic horror roguelike where no two runs tell
+                the same story.
               </p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                There&apos;s a threat beyond the facility walls. Poorly
-                understood, escalating, and harder to stop the longer it goes
-                unchecked. Investigate it. Weaken it across three missions. Then
-                face off with it in a final mission before it becomes
-                unstoppable.
+                Investigate anomalies, contain creatures you don&apos;t
+                understand, and try to hold a facility together while it
+                falls apart around you. You won&apos;t come back stronger
+                between runs. You&apos;ll come back knowing what went
+                wrong, and that changes everything.
               </p>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                The facility you&apos;re operating from is its own disaster:
-                containment failing, threats in the corridors, and a situation
-                that deteriorates every round whether you&apos;re paying
-                attention or not.
-              </p>
-              <p className="mt-4 leading-relaxed text-muted-foreground">
-                No jumpscares. No grinding. No two runs that tell the same
-                story.
+                No jumpscares. No grinding. Just decisions and what they
+                cost.
               </p>
             </motion.div>
 
@@ -130,7 +124,7 @@ export function GameSection() {
           {/* View Complete Intel CTA */}
           <motion.div custom={3.5} variants={fadeUp} className="mb-16 flex justify-center">
             <Link
-              href="/games/dead-letter-protocol/"
+              href="/scp-dead-letter-protocol"
               className="vfx-hover-glitch magnetic-btn text-ui inline-flex items-center gap-3 border border-accent/40 bg-accent-muted px-8 py-3.5 text-accent transition-colors hover:border-accent"
             >
               View Complete Intel
@@ -160,7 +154,7 @@ export function GameSection() {
                   Steam Page Coming Soon
                 </p>
                 <p className="text-ui-sm mt-1 text-muted-foreground">
-                  Wishlist to be notified at launch &mdash; page goes live during early access
+                  Wishlist to be notified at launch. Page goes live during early access.
                 </p>
               </div>
               <div className="text-ui border border-border-bright px-6 py-2.5 text-text-dim">
@@ -185,13 +179,11 @@ export function GameSection() {
                 </h3>
                 <p className="max-w-lg leading-relaxed text-muted-foreground">
                   Playtest upcoming builds, talk directly with the developer,
-                  and connect with like-minded horror enthusiasts who live for
-                  the dread. Your feedback doesn&apos;t just matter &mdash; it
-                  shapes the game.
+                  and connect with players who want to help shape the game.
                 </p>
               </div>
               <a
-                href="https://discord.gg/cCQTJFWH"
+                href="https://discord.gg/7QCX33wgUZ"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="vfx-hover-glitch magnetic-btn text-ui flex items-center gap-2 self-start border border-foreground/20 bg-foreground/10 px-8 py-3 text-foreground transition-colors hover:border-accent hover:text-accent md:self-center"

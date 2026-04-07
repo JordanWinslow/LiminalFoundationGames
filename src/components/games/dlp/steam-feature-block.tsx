@@ -48,6 +48,22 @@ export function SteamFeatureBlock({ section }: { section: SteamSection }) {
           ))}
         </div>
       )}
+
+      {section.features && section.features.length > 0 && (
+        <div className="mt-2 max-w-3xl space-y-3">
+          {section.features.map((feature, i) => (
+            <div
+              key={i}
+              className="flex items-start gap-3 border-b border-border py-3"
+            >
+              <span className="mt-2 h-1.5 w-1.5 shrink-0 bg-accent" />
+              <span className="text-lg leading-relaxed text-foreground/90">
+                {feature}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
     </motion.div>
   );
 }

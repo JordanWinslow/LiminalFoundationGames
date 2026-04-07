@@ -57,9 +57,9 @@ export function DLPPageClient() {
             variants={fadeUp}
             className="mb-8 max-w-2xl text-xl leading-relaxed text-foreground/90 md:text-2xl"
           >
-            Something is wrong inside Site-19. Something worse is happening
-            outside. A punishing strategic horror game where every run creates
-            a story no other player has lived.
+            Something is wrong inside Site-19. Something worse is out there.
+            A strategic horror roguelike where no two runs tell the same
+            story.
           </motion.p>
 
           <motion.p
@@ -67,11 +67,11 @@ export function DLPPageClient() {
             variants={fadeUp}
             className="mb-8 max-w-2xl leading-relaxed text-muted-foreground"
           >
-            Investigate anomalies, contain threats, and make decisions more
-            disturbing than anything you&apos;ll fight. You don&apos;t get
-            stronger between runs &mdash; you get smarter. Winning isn&apos;t
-            about saving everything. It&apos;s about knowing what you can
-            afford to lose.
+            Investigate anomalies, contain creatures you don&apos;t
+            understand, and try to hold a facility together while it falls
+            apart around you. You won&apos;t come back stronger between
+            runs. You&apos;ll come back knowing what went wrong, and that
+            changes everything.
           </motion.p>
 
           <motion.div custom={5} variants={fadeUp}>
@@ -83,9 +83,21 @@ export function DLPPageClient() {
         <div className="space-y-16">
           {steamSections.map((section) => (
             <div key={section.id} className="space-y-10">
+              {/* Video ABOVE text for sections that specify it */}
+              {section.media?.position === "above" && section.media.video && (
+                <MediaPlaceholder
+                  label={section.media.label}
+                  video={section.media.video}
+                />
+              )}
+
               <SteamFeatureBlock section={section} />
+
+              {/* GameLoopDiagram inside the phases section */}
               {section.id === "phases" && <GameLoopDiagram />}
-              {section.media && (
+
+              {/* Video BELOW text (default) */}
+              {section.media?.position !== "above" && section.media && (
                 <MediaPlaceholder
                   label={section.media.label}
                   video={section.media.video}
@@ -95,6 +107,34 @@ export function DLPPageClient() {
           ))}
         </div>
 
+        {/* For Fans Of */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+          custom={0}
+          className="mt-16 border border-border bg-card/50 p-8 md:p-12"
+        >
+          <p className="text-label mb-4 text-accent">For Fans Of</p>
+          <p className="max-w-3xl text-lg leading-relaxed text-foreground/90">
+            The investigation and replayability of World of Horror. The dread
+            of Darkest Dungeon. The universe of the SCP Foundation.
+          </p>
+        </motion.div>
+
+        {/* Closing tagline */}
+        <motion.p
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+          custom={0}
+          className="mt-16 text-center text-xl leading-relaxed text-muted-foreground md:text-2xl"
+        >
+          No jumpscares. No grinding. Just decisions and what they cost.
+        </motion.p>
+
         {/* Bottom CTA */}
         <motion.div
           initial="hidden"
@@ -102,7 +142,7 @@ export function DLPPageClient() {
           viewport={{ once: true, amount: 0.1 }}
           variants={fadeUp}
           custom={0}
-          className="mt-24 flex justify-center"
+          className="mt-16 flex justify-center"
         >
           <Link
             href="/#games"

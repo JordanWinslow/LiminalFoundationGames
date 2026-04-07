@@ -142,7 +142,7 @@ export function CTASection() {
                   </p>
                 </div>
                 <a
-                  href="https://discord.gg/cCQTJFWH"
+                  href="https://discord.gg/7QCX33wgUZ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="vfx-hover-glitch magnetic-btn text-ui flex items-center gap-2 self-start border border-accent/40 bg-accent px-8 py-3.5 text-accent-foreground transition-colors hover:bg-accent-hover md:self-center"

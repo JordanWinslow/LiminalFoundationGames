@@ -8,8 +8,10 @@ export interface SteamSection {
   title: string;
   body: string[];
   subsections?: SteamSubsection[];
+  features?: string[];
   media?: {
     label: string;
+    position?: "above" | "below";
     video?: {
       mp4: string;
       webm: string;
@@ -23,10 +25,13 @@ export const steamSections: SteamSection[] = [
     id: "about",
     title: "About This Game",
     body: [
-      "There's a threat beyond the facility walls. Poorly understood, escalating, and harder to stop the longer it goes unchecked. Investigate it. Weaken it across three missions. Then face off with it in a final mission before it becomes unstoppable. The facility you're operating from is its own disaster: containment failing, threats in the corridors, and a situation that deteriorates every round whether you're paying attention or not.",
+      "Each scenario is a different way the world ends. You choose which one to face, then fight to prevent it across a series of missions while the facility around you falls apart on its own. Runs last about an hour. You won't survive your first. That's the point.",
+      "The facility degrades every round. Anomalies escalate on their own. The entropy meter climbs whether you're paying attention or not. You'll spend the whole run deciding what to save and what to let go.",
+      "Your first run is survival. Your fifth is strategy. Your tenth is the one where everything you've learned finally comes together.",
     ],
     media: {
       label: "Mission advancement gameplay",
+      position: "above",
       video: {
         mp4: "/videos/carousel/mission-advancement.mp4",
         webm: "/videos/carousel/mission-advancement.webm",
@@ -41,23 +46,24 @@ export const steamSections: SteamSection[] = [
     subsections: [
       {
         title: "Player Phase.",
-        body: "3 actions. Move, research, shop, gain intel, recruit allies. Every location offers different actions and more viable strategies than any single run can explore. Where you end your turn determines your encounter.",
+        body: "3 actions per round to investigate, recruit, resupply, or move. Every location has more opportunities than you have time to pursue. The real decision isn't what to do. It's what to ignore. Where you end your turn determines your encounter.",
       },
       {
         title: "Encounter Phase.",
-        body: "Dozens of unique encounters per location. Stat boosts, equipment, allies, narrative choices, and hidden opportunities even in the hallways between primary locations.",
+        body: "An event triggers wherever you end your turn. Negotiations. Crises. Creatures that shouldn't exist. Each location telegraphs the type of encounter it holds — but not the specifics.",
       },
       {
         title: "Anomaly Phase.",
-        body: "Anomalies count down each round. At zero, they become SCPs: threats that roam the facility, block your path, and damage locations until they breach.",
+        body: "Anomalies count down on their own. At zero, they activate and start roaming the facility. They block paths. They damage locations. They don't stop.",
       },
       {
         title: "Entropy Phase.",
-        body: "Quiet at first. Until it isn't. Escalating threats, lockdowns, and crisis objectives with consequences that compound on each other. At 100%, the scenario's final boss arrives at full power whether you're ready or not.",
+        body: "Quiet at first. Until it isn't. Lockdowns seal off entire wings. Failures cascade from one system to the next. At 100%, the scenario's final threat arrives. It doesn't care how prepared you are.",
       },
     ],
     media: {
       label: "Four-phase round cycle gameplay",
+      position: "below",
       video: {
         mp4: "/videos/carousel/phases.mp4",
         webm: "/videos/carousel/phases.webm",
@@ -69,10 +75,13 @@ export const steamSections: SteamSection[] = [
     id: "combat",
     title: "You Don't Know What You're Fighting",
     body: [
-      "Every creature starts classified. Name, traits, weaknesses: all black bars. Equipment is locked before the fight. Match a creature's hidden vulnerabilities and your weapons hit like they were built for this. Miss, and your best gear barely registers. Observe it. Talk to it. Branching dialogue can crack the fight open or make it worse. Destroy it, or contain it and add it to a permanent database that carries between runs. Contained creatures reveal their full profiles forever, and knowing what you're fighting next time changes everything.",
+      "Every creature starts behind black bars. You don't know its name. You don't know what it does. You don't know how to hurt it. Your loadout is locked before the fight begins. Match the creature's hidden vulnerabilities and your weapons will tear through it. Miss, and your best gear does almost nothing.",
+      "Fighting isn't the only way forward. Observe to reveal hidden traits. Talk to the creature through branching dialogue that can expose weaknesses or make things worse. Contain it, destroy it, or run. Every path is viable. None of them are safe.",
+      "Creatures you contain are documented permanently. Every trait revealed. Every vulnerability exposed for all future runs. The next time you face it, you'll be ready.",
     ],
     media: {
-      label: "SCP redaction, trait reveal, database, combat",
+      label: "Redaction, trait reveal, and combat",
+      position: "below",
       video: {
         mp4: "/videos/carousel/redaction.mp4",
         webm: "/videos/carousel/redaction.webm",
@@ -84,8 +93,21 @@ export const steamSections: SteamSection[] = [
     id: "between-runs",
     title: "Between Runs",
     body: [
-      "What carries over isn't power. It's knowledge. Every creature you contain is permanently documented. Black bars lift for good. New operatives unlock. New scenarios open. You start seeing strategies you missed before, routes through the facility that only work because you finally know what's waiting. The replay isn't repetition. It's the moment the game stops being survival and starts being mastery.",
-      "No jumpscares. No grinding. No two runs that tell the same story.",
+      "New operatives and scenarios unlock. But the real difference is you. Routes that seemed impossible start making sense. Strategies you couldn't see before become obvious.",
+      "Other roguelikes make you stronger. This one makes you dangerous.",
+    ],
+  },
+  {
+    id: "key-features",
+    title: "Key Features",
+    body: [],
+    features: [
+      "Strategic horror built around the hour-long run. Play it once to see what happens. Play it again because now you know what went wrong.",
+      "100+ classified creatures. Hidden traits. Branching dialogue. Multiple resolutions.",
+      "A combat system built on information, not stats. Know the creature or lose to it.",
+      "Every round has four phases. Only one belongs to you. The other three belong to the facility.",
+      "Permanent creature database. Contain it once, know it forever.",
+      "Hundreds of narrative encounters, crises, and impossible choices. A different combination every run.",
     ],
   },
 ];
