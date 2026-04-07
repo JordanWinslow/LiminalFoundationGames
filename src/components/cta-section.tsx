@@ -5,7 +5,7 @@ import { SectionHeading } from "./section-heading";
 import { ExternalLink } from "lucide-react";
 
 const socialLinks = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61573754030578" },
+  { label: "Facebook", href: "https://www.facebook.com/LiminalFoundationGames/" },
   { label: "TikTok", href: "https://www.tiktok.com/@liminalfoundationgames" },
   { label: "Instagram", href: "https://www.instagram.com/jordan_d_winslow/" },
   { label: "Twitter / X", href: "https://x.com/LiminalFDN" },
