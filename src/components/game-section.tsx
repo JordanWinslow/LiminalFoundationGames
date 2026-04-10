@@ -132,35 +132,39 @@ export function GameSection() {
             </Link>
           </motion.div>
 
-          {/* Steam — locked achievement style */}
+          {/* Steam CTA */}
           <motion.div
             custom={4}
             variants={fadeUp}
-            className="mt-12 border border-dashed border-border-bright bg-card/50 px-8 py-8 md:py-10"
+            className="vfx-hover-glow mt-12 border border-accent/40 bg-accent-muted px-8 py-8 md:py-10"
           >
-            <div className="flex flex-col items-center gap-5 text-center md:flex-row md:gap-8 md:text-left">
-              {/* Lock icon */}
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center border border-border bg-background">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-text-dim">
-                  <rect x="3" y="11" width="18" height="11" rx="1" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+            <a
+              href="https://store.steampowered.com/app/4581700/SCP_Dead_Letter_Protocol/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-5 text-center md:flex-row md:gap-8 md:text-left"
+            >
+              {/* Steam icon */}
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center border border-accent/30 bg-background">
+                <svg width="24" height="24" viewBox="0 0 496 512" fill="currentColor" className="text-accent">
+                  <path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 41.9-93.7 93.5v2.1L145.3 258c-17.6-1.1-34.1 5.2-46.4 16.7L0 234.8C6.6 108.1 113.8 5 247.6 5 384.8 5 496 119 496 256zM155.7 384.3l-30.5-12.6a52.8 52.8 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c20 8.3 29.6 31.2 21.4 51.1-8.1 19.9-31.2 29.5-51.3 21.6zm146.9-185.2c0-34.9 28.3-63.3 63.3-63.3s63.3 28.3 63.3 63.3-28.4 63.3-63.3 63.3-63.3-28.3-63.3-63.3zm18 .1c0 24.9 20.2 45.1 45.1 45.1 24.9 0 45.1-20.3 45.1-45.1 0-24.9-20.2-45.1-45.1-45.1-24.8 0-45.1 20.2-45.1 45.1z"/>
                 </svg>
               </div>
               <div className="flex-1">
-                <p className="text-label mb-1 text-text-dim">
-                  Achievement Locked
+                <p className="text-label mb-1 text-accent">
+                  Now on Steam
                 </p>
-                <p className="text-display text-2xl text-foreground/70">
-                  Steam Page Coming Soon
+                <p className="text-display text-2xl text-foreground">
+                  Wishlist SCP: Dead Letter Protocol
                 </p>
                 <p className="text-ui-sm mt-1 text-muted-foreground">
-                  Wishlist to be notified at launch. Page goes live during early access.
+                  Add to your wishlist to get notified when the game launches.
                 </p>
               </div>
-              <div className="text-ui border border-border-bright px-6 py-2.5 text-text-dim">
-                Pending
+              <div className="vfx-hover-glitch magnetic-btn text-ui border border-accent/40 bg-accent px-6 py-2.5 text-accent-foreground transition-colors hover:bg-accent-hover">
+                Wishlist on Steam
               </div>
-            </div>
+            </a>
           </motion.div>
 
           {/* Discord community */}

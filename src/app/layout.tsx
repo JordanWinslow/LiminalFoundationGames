@@ -3,6 +3,7 @@ import { Metrophobic, Bebas_Neue, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { SteamBanner } from "@/components/layout/steam-banner";
 import { GrainOverlay } from "@/components/layout/grain-overlay";
 import "./globals.css";
 
@@ -74,6 +75,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <GrainOverlay />
+          <SteamBanner />
           <Header />
           <main className="relative z-10">{children}</main>
           <Footer />

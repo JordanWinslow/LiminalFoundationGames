@@ -36,9 +36,9 @@ export function CTASection() {
               className="text-display mx-8 text-lg tracking-[0.15em] text-text-dim"
             >
               Liminal Foundation Games &bull; SCP: Dead Letter Protocol &bull;
-              Coming Soon to Steam &bull; Secure &bull; Contain &bull; Protect
+              Wishlist on Steam &bull; Secure &bull; Contain &bull; Protect
               &bull; Liminal Foundation Games &bull; SCP: Dead Letter Protocol
-              &bull; Coming Soon to Steam &bull; Secure &bull; Contain &bull;
+              &bull; Wishlist on Steam &bull; Secure &bull; Contain &bull;
               Protect &bull;&nbsp;
             </span>
           ))}

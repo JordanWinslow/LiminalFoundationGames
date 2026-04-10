@@ -46,6 +46,14 @@ export function Footer() {
             </p>
             <div className="flex flex-col gap-3">
               <Link
+                href="https://store.steampowered.com/app/4581700/SCP_Dead_Letter_Protocol/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ui text-accent transition-colors hover:text-accent-hover"
+              >
+                Steam
+              </Link>
+              <Link
                 href="https://JordanWinslow.dev"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -65,6 +65,14 @@ export function Header() {
             </a>
           ))}
           <div className="mx-2 h-4 w-px bg-border" />
+          <a
+            href="https://store.steampowered.com/app/4581700/SCP_Dead_Letter_Protocol/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="vfx-hover-chromatic text-label text-accent transition-colors duration-300 hover:text-accent-hover"
+          >
+            Steam
+          </a>
           <Link
             href="https://github.com/JordanWinslow"
             target="_blank"
@@ -103,6 +111,15 @@ export function Header() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://store.steampowered.com/app/4581700/SCP_Dead_Letter_Protocol/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMenuOpen(false)}
+              className="text-ui border-b border-border py-4 text-accent transition-colors hover:text-accent-hover"
+            >
+              Steam
+            </a>
             <Link
               href="https://github.com/JordanWinslow"
               target="_blank"
