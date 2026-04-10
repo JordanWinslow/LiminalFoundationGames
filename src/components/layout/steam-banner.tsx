@@ -30,7 +30,7 @@ export function SteamBanner() {
   if (!visible) return null;
 
   return (
-    <div className="relative z-[60] border-b border-accent/30 bg-accent-muted">
+    <div className="fixed top-16 left-0 right-0 z-[55] border-b border-accent/30 bg-accent-muted backdrop-blur-xl">
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-2.5 md:px-10">
         <a
           href={STEAM_URL}

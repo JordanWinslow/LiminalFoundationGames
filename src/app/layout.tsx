@@ -75,8 +75,8 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <GrainOverlay />
-          <SteamBanner />
           <Header />
+          <SteamBanner />
           <main className="relative z-10">{children}</main>
           <Footer />
         </ThemeProvider>
