@@ -250,15 +250,8 @@ export const pressCategories: PressCategory[] = [
     id: "trailer",
     title: "Trailer",
     description:
-      "Official announcement trailer. Download the file directly or embed from YouTube.",
+      "Official announcement trailer. Full-resolution download available on Google Drive.",
     youtubeUrl: "https://youtu.be/iaC9YpJQjuM",
-    assets: [
-      {
-        src: "/press-kit/trailer/announcement-trailer.mp4",
-        filename: "announcement-trailer.mp4",
-        label: "Announcement Trailer (Download)",
-        type: "video",
-      },
-    ],
+    assets: [],
   },
 ];

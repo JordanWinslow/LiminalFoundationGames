@@ -18,9 +18,7 @@ import type { CarouselSlide } from "./carousel";
 
 const carouselSlides: CarouselSlide[] = [
   {
-    video: {
-      mp4: "/press-kit/trailer/announcement-trailer.mp4",
-    },
+    youtube: "iaC9YpJQjuM",
     alt: "Official announcement trailer",
     caption: "Announcement Trailer",
   },

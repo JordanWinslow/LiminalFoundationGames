@@ -264,6 +264,7 @@ function CategorySection({
           </h2>
           <p className="mt-2 max-w-xl text-muted-foreground">{category.description}</p>
         </div>
+        {category.assets.length > 0 && (
         <button
           onClick={handleDownloadCategory}
           disabled={downloadState !== "idle"}
@@ -286,6 +287,7 @@ function CategorySection({
             </>
           )}
         </button>
+        )}
       </motion.div>
 
       {/* YouTube embed for trailer */}
@@ -300,7 +302,7 @@ function CategorySection({
               className="absolute inset-0 h-full w-full"
             />
           </div>
-          <div className="mt-2 flex items-center gap-3">
+          <div className="mt-3 flex flex-wrap items-center gap-4">
             <a
               href={category.youtubeUrl}
               target="_blank"
@@ -309,24 +311,35 @@ function CategorySection({
             >
               Watch on YouTube
             </a>
+            <a
+              href="https://drive.google.com/drive/folders/1EAw6gWKDgE3eNTStcdDF6L1PS6bb2tL2?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ui-sm flex items-center gap-2 text-accent transition-colors hover:text-accent-hover"
+            >
+              <Download className="h-3.5 w-3.5" />
+              Download Full-Res from Google Drive
+            </a>
           </div>
         </motion.div>
       )}
 
       {/* Asset grid */}
-      <motion.div
-        custom={category.youtubeUrl ? 2 : 1}
-        variants={fadeUp}
-        className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-      >
-        {category.assets.map((asset) => (
-          <AssetThumb
-            key={asset.filename}
-            asset={asset}
-            onClick={() => onAssetClick(category, asset)}
-          />
-        ))}
-      </motion.div>
+      {category.assets.length > 0 && (
+        <motion.div
+          custom={category.youtubeUrl ? 2 : 1}
+          variants={fadeUp}
+          className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {category.assets.map((asset) => (
+            <AssetThumb
+              key={asset.filename}
+              asset={asset}
+              onClick={() => onAssetClick(category, asset)}
+            />
+          ))}
+        </motion.div>
+      )}
     </motion.section>
   );
 }
@@ -449,7 +462,8 @@ export function PressKitClient() {
           >
             Logos, screenshots, gameplay clips, and trailer footage for press
             and content creators. Download individual files or grab entire
-            categories as a .zip.
+            categories as a .zip. Full-resolution and uncompressed originals
+            are available on Google Drive.
           </motion.p>
 
           {/* Quick nav + Download All */}
@@ -476,6 +490,15 @@ export function PressKitClient() {
                 </>
               )}
             </button>
+            <a
+              href="https://drive.google.com/drive/folders/1EAw6gWKDgE3eNTStcdDF6L1PS6bb2tL2?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="vfx-hover-glitch magnetic-btn text-ui inline-flex items-center gap-3 border border-border px-6 py-3 text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+            >
+              <Download className="h-4 w-4" />
+              Full-Res on Google Drive
+            </a>
             <span className="text-caption text-text-dim">
               {allAssets.length} files
             </span>

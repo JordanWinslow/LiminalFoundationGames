@@ -13,6 +13,8 @@ export interface CarouselSlide {
   src?: string;
   /** Video sources — when provided, renders a <video> instead of <img> */
   video?: { mp4: string; webm?: string; poster?: string };
+  /** YouTube video ID — renders an interactive YouTube embed */
+  youtube?: string;
   alt: string;
   caption?: string;
   contain?: boolean;
@@ -21,6 +23,11 @@ export interface CarouselSlide {
 interface CarouselProps {
   slides: CarouselSlide[];
   href?: string;
+}
+
+/** Returns true if the slide should pause autoplay (video or YouTube) */
+function isPausedSlide(slide?: CarouselSlide) {
+  return !!(slide?.video || slide?.youtube);
 }
 
 export function Carousel({ slides, href }: CarouselProps) {
@@ -43,9 +50,8 @@ export function Carousel({ slides, href }: CarouselProps) {
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
 
-    // Stop autoplay for video slides (let the video's onEnded advance instead)
-    // Resume autoplay for image slides
-    if (slides[index]?.video) {
+    // Stop autoplay for video/YouTube slides, resume for images
+    if (isPausedSlide(slides[index])) {
       autoplayPlugin.current.stop();
     } else {
       autoplayPlugin.current.play();
@@ -71,9 +77,8 @@ export function Carousel({ slides, href }: CarouselProps) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // Only start autoplay if the current slide is not a video
           const currentIndex = emblaApi.selectedScrollSnap();
-          if (!slides[currentIndex]?.video) {
+          if (!isPausedSlide(slides[currentIndex])) {
             autoplayPlugin.current.play();
           }
         } else {
@@ -85,7 +90,7 @@ export function Carousel({ slides, href }: CarouselProps) {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [emblaApi]);
+  }, [emblaApi, slides]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
@@ -108,10 +113,20 @@ export function Carousel({ slides, href }: CarouselProps) {
             <div className="flex">
               {slides.map((slide, i) => {
                 const isVideo = !!slide.video;
+                const isYouTube = !!slide.youtube;
+
                 const slideContent = (
                   <>
                     <div className={`scan-lines relative aspect-video ${slide.contain ? "bg-background" : ""}`}>
-                      {isVideo ? (
+                      {isYouTube ? (
+                        <iframe
+                          src={`https://www.youtube.com/embed/${slide.youtube}?rel=0&modestbranding=1`}
+                          title={slide.alt}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="absolute inset-0 h-full w-full"
+                        />
+                      ) : isVideo ? (
                         <VideoSlide
                           mp4={slide.video!.mp4}
                           webm={slide.video!.webm}
@@ -149,7 +164,8 @@ export function Carousel({ slides, href }: CarouselProps) {
                     aria-roledescription="slide"
                     aria-label={`Slide ${i + 1} of ${slides.length}: ${slide.alt}`}
                   >
-                    {href ? (
+                    {/* YouTube slides should not be wrapped in a link */}
+                    {href && !isYouTube ? (
                       <Link href={href} className="block cursor-pointer">
                         {slideContent}
                       </Link>
@@ -163,11 +179,11 @@ export function Carousel({ slides, href }: CarouselProps) {
           </div>
         </div>
 
-        {/* Previous arrow — positioned absolutely, pointer-events isolated from Embla root */}
+        {/* Previous arrow */}
         <button
           onClick={scrollPrev}
           onMouseEnter={() => autoplayPlugin.current.stop()}
-          onMouseLeave={() => { if (!slides[selectedIndex]?.video) autoplayPlugin.current.play(); }}
+          onMouseLeave={() => { if (!isPausedSlide(slides[selectedIndex])) autoplayPlugin.current.play(); }}
           disabled={!canScrollPrev}
           className="flex h-12 w-12 items-center justify-center border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-30 md:opacity-0 md:group-hover:opacity-100"
           style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}
@@ -176,11 +192,11 @@ export function Carousel({ slides, href }: CarouselProps) {
           <ChevronLeft className="h-5 w-5" />
         </button>
 
-        {/* Next arrow — positioned absolutely, pointer-events isolated from Embla root */}
+        {/* Next arrow */}
         <button
           onClick={scrollNext}
           onMouseEnter={() => autoplayPlugin.current.stop()}
-          onMouseLeave={() => { if (!slides[selectedIndex]?.video) autoplayPlugin.current.play(); }}
+          onMouseLeave={() => { if (!isPausedSlide(slides[selectedIndex])) autoplayPlugin.current.play(); }}
           disabled={!canScrollNext}
           className="flex h-12 w-12 items-center justify-center border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-30 md:opacity-0 md:group-hover:opacity-100"
           style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}
