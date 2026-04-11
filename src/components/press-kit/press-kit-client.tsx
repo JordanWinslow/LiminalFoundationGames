@@ -7,14 +7,10 @@ import Image from "next/image";
 import {
   ChevronLeft,
   Download,
-  Package,
-  Check,
-  Loader2,
   X,
   ChevronRight,
   Eye,
 } from "lucide-react";
-import JSZip from "jszip";
 import { pressCategories, type PressAsset, type PressCategory } from "./press-kit-data";
 
 const fadeUp = {
@@ -25,36 +21,6 @@ const fadeUp = {
     transition: { duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] as const },
   }),
 };
-
-type DownloadState = "idle" | "downloading" | "done";
-
-async function downloadFile(url: string): Promise<ArrayBuffer> {
-  const res = await fetch(url);
-  return res.arrayBuffer();
-}
-
-async function downloadAsZip(
-  assets: PressAsset[],
-  zipName: string,
-  onProgress: (pct: number) => void
-) {
-  const zip = new JSZip();
-  let loaded = 0;
-
-  for (const asset of assets) {
-    const data = await downloadFile(asset.src);
-    zip.file(asset.filename, data);
-    loaded++;
-    onProgress(Math.round((loaded / assets.length) * 100));
-  }
-
-  const blob = await zip.generateAsync({ type: "blob" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = zipName;
-  link.click();
-  URL.revokeObjectURL(link.href);
-}
 
 function downloadSingle(asset: PressAsset) {
   const link = document.createElement("a");
@@ -224,25 +190,6 @@ function CategorySection({
   index: number;
   onAssetClick: (cat: PressCategory, asset: PressAsset) => void;
 }) {
-  const [downloadState, setDownloadState] = useState<DownloadState>("idle");
-  const [progress, setProgress] = useState(0);
-
-  const handleDownloadCategory = async () => {
-    setDownloadState("downloading");
-    setProgress(0);
-    try {
-      await downloadAsZip(
-        category.assets,
-        `scp-dlp-${category.id}.zip`,
-        setProgress
-      );
-      setDownloadState("done");
-      setTimeout(() => setDownloadState("idle"), 2500);
-    } catch {
-      setDownloadState("idle");
-    }
-  };
-
   return (
     <motion.section
       id={category.id}
@@ -251,7 +198,7 @@ function CategorySection({
       viewport={{ once: true, amount: 0.05 }}
     >
       {/* Section header */}
-      <motion.div custom={0} variants={fadeUp} className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+      <motion.div custom={0} variants={fadeUp} className="mb-6">
         <div>
           <div className="mb-2 flex items-center gap-3">
             <span className="text-caption text-text-dim">
@@ -264,30 +211,6 @@ function CategorySection({
           </h2>
           <p className="mt-2 max-w-xl text-muted-foreground">{category.description}</p>
         </div>
-        {category.assets.length > 0 && (
-        <button
-          onClick={handleDownloadCategory}
-          disabled={downloadState !== "idle"}
-          className="vfx-hover-glitch text-ui inline-flex shrink-0 items-center gap-2 border border-border px-5 py-2.5 text-muted-foreground transition-colors hover:border-accent hover:text-accent disabled:opacity-50"
-        >
-          {downloadState === "downloading" ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              {progress}%
-            </>
-          ) : downloadState === "done" ? (
-            <>
-              <Check className="h-4 w-4 text-accent" />
-              Done
-            </>
-          ) : (
-            <>
-              <Package className="h-4 w-4" />
-              Download .zip
-            </>
-          )}
-        </button>
-        )}
       </motion.div>
 
       {/* YouTube embed for trailer */}
@@ -350,39 +273,6 @@ export function PressKitClient() {
     category: PressCategory;
     index: number;
   } | null>(null);
-  const [allDownloadState, setAllDownloadState] = useState<DownloadState>("idle");
-  const [allProgress, setAllProgress] = useState(0);
-
-  const allAssets = pressCategories.flatMap((c) => c.assets);
-
-  const handleDownloadAll = async () => {
-    setAllDownloadState("downloading");
-    setAllProgress(0);
-    try {
-      const zip = new JSZip();
-      let loaded = 0;
-      for (const cat of pressCategories) {
-        const folder = zip.folder(cat.id)!;
-        for (const asset of cat.assets) {
-          const data = await downloadFile(asset.src);
-          folder.file(asset.filename, data);
-          loaded++;
-          setAllProgress(Math.round((loaded / allAssets.length) * 100));
-        }
-      }
-      const blob = await zip.generateAsync({ type: "blob" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "scp-dlp-press-kit.zip";
-      link.click();
-      URL.revokeObjectURL(link.href);
-      setAllDownloadState("done");
-      setTimeout(() => setAllDownloadState("idle"), 2500);
-    } catch {
-      setAllDownloadState("idle");
-    }
-  };
-
   const openLightbox = useCallback((cat: PressCategory, asset: PressAsset) => {
     const index = cat.assets.indexOf(asset);
     setLightbox({ category: cat, index });
@@ -461,47 +351,21 @@ export function PressKitClient() {
             className="mb-8 max-w-2xl leading-relaxed text-muted-foreground"
           >
             Logos, screenshots, gameplay clips, and trailer footage for press
-            and content creators. Download individual files or grab entire
-            categories as a .zip. Full-resolution and uncompressed originals
-            are available on Google Drive.
+            and content creators. Browse assets below or download everything
+            in full resolution from Google Drive.
           </motion.p>
 
-          {/* Quick nav + Download All */}
-          <motion.div custom={4} variants={fadeUp} className="mb-8 flex flex-wrap items-center gap-3">
-            <button
-              onClick={handleDownloadAll}
-              disabled={allDownloadState !== "idle"}
-              className="vfx-hover-glitch magnetic-btn text-ui inline-flex items-center gap-3 border border-accent/40 bg-accent-muted px-6 py-3 text-accent transition-colors hover:border-accent disabled:opacity-50"
-            >
-              {allDownloadState === "downloading" ? (
-                <>
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  Packing... {allProgress}%
-                </>
-              ) : allDownloadState === "done" ? (
-                <>
-                  <Check className="h-4 w-4" />
-                  Downloaded
-                </>
-              ) : (
-                <>
-                  <Package className="h-4 w-4" />
-                  Download Everything
-                </>
-              )}
-            </button>
+          {/* Download All on Google Drive */}
+          <motion.div custom={4} variants={fadeUp} className="mb-8">
             <a
               href="https://drive.google.com/drive/folders/1EAw6gWKDgE3eNTStcdDF6L1PS6bb2tL2?usp=sharing"
               target="_blank"
               rel="noopener noreferrer"
-              className="vfx-hover-glitch magnetic-btn text-ui inline-flex items-center gap-3 border border-border px-6 py-3 text-muted-foreground transition-colors hover:border-accent hover:text-accent"
+              className="vfx-hover-glitch magnetic-btn text-ui inline-flex items-center gap-3 border border-accent/40 bg-accent-muted px-6 py-3 text-accent transition-colors hover:border-accent"
             >
               <Download className="h-4 w-4" />
-              Full-Res on Google Drive
+              Download Everything on Google Drive
             </a>
-            <span className="text-caption text-text-dim">
-              {allAssets.length} files
-            </span>
           </motion.div>
 
           {/* Category quick links */}
