@@ -410,7 +410,14 @@ export function PressKitClient() {
           <p className="text-label mb-4 text-accent">Contact</p>
           <p className="max-w-3xl text-lg leading-relaxed text-foreground/90">
             For press inquiries, review copies, or additional assets, reach out
-            on{" "}
+            via{" "}
+            <a
+              href="mailto:liminalfoundationgames@gmail.com"
+              className="text-accent underline transition-colors hover:text-accent-hover"
+            >
+              liminalfoundationgames@gmail.com
+            </a>{" "}
+            or on{" "}
             <a
               href="https://discord.gg/VhMYBCRgKa"
               target="_blank"
@@ -418,15 +425,6 @@ export function PressKitClient() {
               className="text-accent underline transition-colors hover:text-accent-hover"
             >
               Discord
-            </a>{" "}
-            or through{" "}
-            <a
-              href="https://JordanWinslow.dev"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent underline transition-colors hover:text-accent-hover"
-            >
-              JordanWinslow.dev
             </a>
             .
           </p>

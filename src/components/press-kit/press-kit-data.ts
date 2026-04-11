@@ -67,118 +67,6 @@ export const pressCategories: PressCategory[] = [
     ],
   },
   {
-    id: "screenshots",
-    title: "Screenshots",
-    description:
-      "In-game screenshots showcasing combat, investigation, containment, and base management.",
-    assets: [
-      {
-        src: "/press-kit/screenshots/combat-1.png",
-        filename: "combat-1.png",
-        label: "Combat Encounter 1",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/combat-2.png",
-        filename: "combat-2.png",
-        label: "Combat Encounter 2",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/combat-3.png",
-        filename: "combat-3.png",
-        label: "Combat Encounter 3",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/combat-4.png",
-        filename: "combat-4.png",
-        label: "Combat Encounter 4",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/dice-contain.png",
-        filename: "dice-contain.png",
-        label: "Containment Roll",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/fail-objective.png",
-        filename: "fail-objective.png",
-        label: "Failed Objective",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/gaining-items.png",
-        filename: "gaining-items.png",
-        label: "Item Acquisition",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/hard-decisions.png",
-        filename: "hard-decisions.png",
-        label: "Difficult Choices",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/investigate-1.png",
-        filename: "investigate-1.png",
-        label: "Investigation Phase",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/map.png",
-        filename: "map.png",
-        label: "Facility Map",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/mission-selection.png",
-        filename: "mission-selection.png",
-        label: "Mission Selection",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/recruit-shop.png",
-        filename: "recruit-shop.png",
-        label: "Recruit Shop",
-        type: "image",
-      },
-      {
-        src: "/press-kit/screenshots/scp-database.png",
-        filename: "scp-database.png",
-        label: "SCP Database",
-        type: "image",
-      },
-    ],
-  },
-  {
-    id: "promotional",
-    title: "Promotional Art",
-    description:
-      "Streaming overlays, social banners, and tall-format promotional artwork.",
-    assets: [
-      {
-        src: "/press-kit/promotional/streaming-left.png",
-        filename: "streaming-overlay-left.png",
-        label: "Streaming Overlay (Left)",
-        type: "image",
-      },
-      {
-        src: "/press-kit/promotional/streaming-right.png",
-        filename: "streaming-overlay-right.png",
-        label: "Streaming Overlay (Right)",
-        type: "image",
-      },
-      {
-        src: "/press-kit/promotional/promotional-tall.png",
-        filename: "promotional-art-tall.png",
-        label: "Tall Promotional Art",
-        type: "image",
-      },
-    ],
-  },
-  {
     id: "gameplay-clips",
     title: "Gameplay Clips",
     description:
@@ -244,6 +132,38 @@ export const pressCategories: PressCategory[] = [
         label: "Game Phases (Social GIF)",
         type: "gif",
       },
+    ],
+  },
+  {
+    id: "screenshots",
+    title: "Screenshots",
+    description:
+      "In-game screenshots showcasing combat, investigation, containment, and base management.",
+    assets: [
+      { src: "/press-kit/screenshots/combat-1.png", filename: "combat-1.png", label: "Combat Encounter 1", type: "image" },
+      { src: "/press-kit/screenshots/combat-2.png", filename: "combat-2.png", label: "Combat Encounter 2", type: "image" },
+      { src: "/press-kit/screenshots/combat-3.png", filename: "combat-3.png", label: "Combat Encounter 3", type: "image" },
+      { src: "/press-kit/screenshots/combat-4.png", filename: "combat-4.png", label: "Combat Encounter 4", type: "image" },
+      { src: "/press-kit/screenshots/dice-contain.png", filename: "dice-contain.png", label: "Containment Roll", type: "image" },
+      { src: "/press-kit/screenshots/fail-objective.png", filename: "fail-objective.png", label: "Failed Objective", type: "image" },
+      { src: "/press-kit/screenshots/gaining-items.png", filename: "gaining-items.png", label: "Item Acquisition", type: "image" },
+      { src: "/press-kit/screenshots/hard-decisions.png", filename: "hard-decisions.png", label: "Difficult Choices", type: "image" },
+      { src: "/press-kit/screenshots/investigate-1.png", filename: "investigate-1.png", label: "Investigation Phase", type: "image" },
+      { src: "/press-kit/screenshots/map.png", filename: "map.png", label: "Facility Map", type: "image" },
+      { src: "/press-kit/screenshots/mission-selection.png", filename: "mission-selection.png", label: "Mission Selection", type: "image" },
+      { src: "/press-kit/screenshots/recruit-shop.png", filename: "recruit-shop.png", label: "Recruit Shop", type: "image" },
+      { src: "/press-kit/screenshots/scp-database.png", filename: "scp-database.png", label: "SCP Database", type: "image" },
+    ],
+  },
+  {
+    id: "promotional",
+    title: "Promotional Art",
+    description:
+      "Streaming overlays, social banners, and tall-format promotional artwork.",
+    assets: [
+      { src: "/press-kit/promotional/streaming-left.png", filename: "streaming-overlay-left.png", label: "Streaming Overlay (Left)", type: "image" },
+      { src: "/press-kit/promotional/streaming-right.png", filename: "streaming-overlay-right.png", label: "Streaming Overlay (Right)", type: "image" },
+      { src: "/press-kit/promotional/promotional-tall.png", filename: "promotional-art-tall.png", label: "Tall Promotional Art", type: "image" },
     ],
   },
   {
