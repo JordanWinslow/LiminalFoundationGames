@@ -17,14 +17,14 @@ const featureTags = [
 import type { CarouselSlide } from "./carousel";
 
 const carouselSlides: CarouselSlide[] = [
-  { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
   {
     video: {
-      mp4: "/press-kit/trailer/announcement-trailer-compressed.mp4",
+      mp4: "/press-kit/trailer/announcement-trailer.mp4",
     },
     alt: "Official announcement trailer",
     caption: "Announcement Trailer",
   },
+  { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
   {
     video: {
       mp4: "/videos/carousel/mission-advancement.mp4",
@@ -61,8 +61,6 @@ const carouselSlides: CarouselSlide[] = [
     alt: "SCP creature art and combat VFX",
     caption: "Fig. 04 — SCP Combat & VFX",
   },
-  { src: "/images/carousel/scp-database.webp", alt: "In-game SCP database", caption: "Fig. 05 — In-Game Anomaly Database", comingSoon: true },
-  { src: "/images/carousel/location-command.webp", alt: "Mobile command center", caption: "Fig. 06 — Mobile Command Center", comingSoon: true },
 ];
 
 const fadeUp = {

@@ -16,7 +16,6 @@ export interface CarouselSlide {
   alt: string;
   caption?: string;
   contain?: boolean;
-  comingSoon?: boolean;
 }
 
 interface CarouselProps {
@@ -72,7 +71,11 @@ export function Carousel({ slides, href }: CarouselProps) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          autoplayPlugin.current.play();
+          // Only start autoplay if the current slide is not a video
+          const currentIndex = emblaApi.selectedScrollSnap();
+          if (!slides[currentIndex]?.video) {
+            autoplayPlugin.current.play();
+          }
         } else {
           autoplayPlugin.current.stop();
         }
@@ -126,13 +129,6 @@ export function Carousel({ slides, href }: CarouselProps) {
                           className={slide.contain ? "object-contain p-8" : "object-cover"}
                           sizes="(max-width: 1400px) 100vw, 1400px"
                         />
-                      )}
-                      {slide.comingSoon && (
-                        <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/80">
-                          <span className="text-display text-3xl tracking-[0.25em] text-muted-foreground md:text-5xl">
-                            COMING SOON
-                          </span>
-                        </div>
                       )}
                     </div>
                     {slide.caption && (

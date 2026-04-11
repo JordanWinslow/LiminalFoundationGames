@@ -254,7 +254,7 @@ export const pressCategories: PressCategory[] = [
     youtubeUrl: "https://youtu.be/iaC9YpJQjuM",
     assets: [
       {
-        src: "/press-kit/trailer/announcement-trailer-compressed.mp4",
+        src: "/press-kit/trailer/announcement-trailer.mp4",
         filename: "announcement-trailer.mp4",
         label: "Announcement Trailer (Download)",
         type: "video",
