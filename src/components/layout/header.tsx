@@ -74,14 +74,6 @@ export function Header() {
           >
             Steam
           </a>
-          <Link
-            href="https://github.com/JordanWinslow"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="vfx-hover-chromatic text-label text-muted-foreground transition-colors duration-300 hover:text-foreground"
-          >
-            GitHub
-          </Link>
           <ThemeToggle />
         </nav>
 
@@ -121,15 +113,6 @@ export function Header() {
             >
               Steam
             </a>
-            <Link
-              href="https://github.com/JordanWinslow"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMenuOpen(false)}
-              className="text-ui py-4 text-muted-foreground transition-colors hover:text-foreground"
-            >
-              GitHub
-            </Link>
           </nav>
         </div>
       )}

@@ -65,14 +65,6 @@ export function Footer() {
                 JordanWinslow.dev
               </Link>
               <Link
-                href="https://github.com/JordanWinslow"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-ui text-muted-foreground transition-colors hover:text-foreground"
-              >
-                GitHub
-              </Link>
-              <Link
                 href="https://JordanWinslow.me/royaltyfreemusic"
                 target="_blank"
                 rel="noopener noreferrer"
