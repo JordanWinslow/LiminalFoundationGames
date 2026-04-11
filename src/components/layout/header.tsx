@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Games", href: "/#games" },
   { label: "About", href: "/#about" },
   { label: "Connect", href: "/#connect" },
+  { label: "Press Kit", href: "/press-kit" },
 ];
 
 export function Header() {

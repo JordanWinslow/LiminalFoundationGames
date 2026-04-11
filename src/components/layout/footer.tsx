@@ -36,6 +36,9 @@ export function Footer() {
               <a href="/#connect" className="text-ui text-muted-foreground transition-colors hover:text-foreground">
                 Connect
               </a>
+              <a href="/press-kit" className="text-ui text-muted-foreground transition-colors hover:text-foreground">
+                Press Kit
+              </a>
             </div>
           </div>
 
