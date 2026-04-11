@@ -68,36 +68,20 @@ export function CTASection() {
 
               <motion.div custom={2} variants={fadeUp} className="flex flex-col gap-4">
                 <p className="leading-relaxed text-muted-foreground">
-                  I spent years as a music producer and software engineer building
-                  games in RPG Maker, Ren&apos;Py, and visual novel engines before I
-                  admitted what I actually wanted to make: the games that haunted me.
-                  The ones that sit in the back of your mind days later. So I put
-                  everything into my most ambitious project yet, SCP: Dead Letter
-                  Protocol.
+                  I&apos;m Jordan Winslow, a solo developer. Everything you see
+                  here, from the game itself to this website and the words on
+                  it, is built by me. I&apos;ve spent over two years pouring
+                  myself into SCP: Dead Letter Protocol, handling the design,
+                  programming, VFX, narrative, and UI from the ground up.
                 </p>
                 <p className="leading-relaxed text-muted-foreground">
-                  My inspirations range from board games like Eldritch Horror to
-                  analog horror like the Mandela Catalogue, with SCP lore, liminal
-                  spaces, and things like House of Leaves and Petscop woven
-                  throughout. I have zero interest in jump scares. I care about
-                  existential dread: the kind that follows you out of the game and
-                  makes you question what you just experienced.
-                </p>
-                <p className="leading-relaxed text-muted-foreground">
-                  I&apos;m obsessed with interfaces. As a frontend developer by trade, I
-                  design in Figma and build in GameMaker. Menus, readouts, and
-                  dashboards can be just as immersive as any 3D world. I spend hours
-                  on pixel-perfect visual effects and a style that feels like nothing
-                  else out there. I&apos;m a programmer, not an illustrator, so I use AI
-                  as a development tool, then edit every image and layer on VFX until
-                  it becomes something genuinely my own.
-                </p>
-                <p className="leading-relaxed text-muted-foreground">
-                  Every decision in my games should feel difficult. Moral dilemmas
-                  without clean answers. The wrong call costs you everything. I want
-                  you to feel the weight of command, not just the thrill of combat. If
-                  that sounds like your kind of game, join the Discord. Your feedback
-                  directly shapes what I build next.
+                  I care about craft. Every interface is designed in Figma and
+                  built in GameMaker with pixel-perfect attention to detail.
+                  Every visual effect is hand-tuned. Every system is designed
+                  to create the kind of dread that stays with you after you
+                  close the game. If that sounds like your kind of experience,
+                  join the Discord. Your feedback directly shapes what I build
+                  next.
                 </p>
               </motion.div>
             </div>
