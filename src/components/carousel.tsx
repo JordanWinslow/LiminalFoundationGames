@@ -2,18 +2,14 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { VideoSlide } from "./video-slide";
 
 export interface CarouselSlide {
-  /** Image source path */
   src?: string;
-  /** Video sources — when provided, renders a <video> instead of <img> */
   video?: { mp4: string; webm?: string; poster?: string };
-  /** YouTube video ID — renders an interactive YouTube embed */
   youtube?: string;
   alt: string;
   caption?: string;
@@ -25,38 +21,48 @@ interface CarouselProps {
   href?: string;
 }
 
-/** Returns true if the slide should pause autoplay (video or YouTube) */
-function isPausedSlide(slide?: CarouselSlide) {
-  return !!(slide?.video || slide?.youtube);
-}
-
 export function Carousel({ slides, href }: CarouselProps) {
-  const autoplayPlugin = useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: false, stopOnMouseEnter: true, playOnInit: false })
-  );
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, dragFree: false },
-    [autoplayPlugin.current]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, dragFree: false });
   const containerRef = useRef<HTMLDivElement>(null);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearTimer = useCallback(() => {
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
+    }
+  }, []);
+
+  const scheduleNext = useCallback(() => {
+    clearTimer();
+    if (!emblaApi || !isVisible || isPaused) return;
+
+    const slide = slides[emblaApi.selectedScrollSnap()];
+    // Only auto-advance image slides (videos advance via onEnded, YouTube is manual)
+    if (!slide?.video && !slide?.youtube) {
+      timerRef.current = setTimeout(() => {
+        emblaApi.scrollNext();
+      }, 2000);
+    }
+  }, [emblaApi, slides, isVisible, isPaused, clearTimer]);
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return;
-    const index = emblaApi.selectedScrollSnap();
-    setSelectedIndex(index);
+    setSelectedIndex(emblaApi.selectedScrollSnap());
     setCanScrollPrev(emblaApi.canScrollPrev());
     setCanScrollNext(emblaApi.canScrollNext());
+  }, [emblaApi]);
 
-    // Stop autoplay for video/YouTube slides, resume for images
-    if (isPausedSlide(slides[index])) {
-      autoplayPlugin.current.stop();
-    } else {
-      autoplayPlugin.current.play();
-    }
-  }, [emblaApi, slides]);
+  // When selected index, visibility, or pause state changes, re-evaluate the timer
+  useEffect(() => {
+    scheduleNext();
+    return clearTimer;
+  }, [selectedIndex, isVisible, isPaused, scheduleNext, clearTimer]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -69,31 +75,25 @@ export function Carousel({ slides, href }: CarouselProps) {
     };
   }, [emblaApi, onSelect]);
 
-  // Start autoplay only when the carousel is visible
+  // Track carousel visibility
   useEffect(() => {
     const node = containerRef.current;
-    if (!node || !emblaApi) return;
-
+    if (!node) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          const currentIndex = emblaApi.selectedScrollSnap();
-          if (!isPausedSlide(slides[currentIndex])) {
-            autoplayPlugin.current.play();
-          }
-        } else {
-          autoplayPlugin.current.stop();
-        }
-      },
+      ([entry]) => setIsVisible(entry.isIntersecting),
       { threshold: 0.3 }
     );
-
     observer.observe(node);
     return () => observer.disconnect();
-  }, [emblaApi, slides]);
+  }, []);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
+
+  // Video ended handler: advance to next slide
+  const handleVideoEnded = useCallback(() => {
+    emblaApi?.scrollNext();
+  }, [emblaApi]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -106,7 +106,15 @@ export function Carousel({ slides, href }: CarouselProps) {
   }, [scrollPrev, scrollNext]);
 
   return (
-    <div ref={containerRef} className="group" role="region" aria-label="Image carousel" aria-roledescription="carousel">
+    <div
+      ref={containerRef}
+      className="group"
+      role="region"
+      aria-label="Image carousel"
+      aria-roledescription="carousel"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       <div className="relative" style={{ position: "relative" }}>
         <div className="overflow-hidden border border-border bg-card">
           <div ref={emblaRef} className="overflow-hidden">
@@ -134,7 +142,7 @@ export function Carousel({ slides, href }: CarouselProps) {
                           alt={slide.alt}
                           isActive={i === selectedIndex}
                           shouldLoop={false}
-                          onEnded={() => emblaApi?.scrollNext()}
+                          onEnded={handleVideoEnded}
                         />
                       ) : (
                         <Image
@@ -164,7 +172,6 @@ export function Carousel({ slides, href }: CarouselProps) {
                     aria-roledescription="slide"
                     aria-label={`Slide ${i + 1} of ${slides.length}: ${slide.alt}`}
                   >
-                    {/* YouTube slides should not be wrapped in a link */}
                     {href && !isYouTube ? (
                       <Link href={href} className="block cursor-pointer">
                         {slideContent}
@@ -182,8 +189,6 @@ export function Carousel({ slides, href }: CarouselProps) {
         {/* Previous arrow */}
         <button
           onClick={scrollPrev}
-          onMouseEnter={() => autoplayPlugin.current.stop()}
-          onMouseLeave={() => { if (!isPausedSlide(slides[selectedIndex])) autoplayPlugin.current.play(); }}
           disabled={!canScrollPrev}
           className="flex h-12 w-12 items-center justify-center border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-30 md:opacity-0 md:group-hover:opacity-100"
           style={{ position: "absolute", left: "12px", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}
@@ -195,8 +200,6 @@ export function Carousel({ slides, href }: CarouselProps) {
         {/* Next arrow */}
         <button
           onClick={scrollNext}
-          onMouseEnter={() => autoplayPlugin.current.stop()}
-          onMouseLeave={() => { if (!isPausedSlide(slides[selectedIndex])) autoplayPlugin.current.play(); }}
           disabled={!canScrollNext}
           className="flex h-12 w-12 items-center justify-center border border-border bg-background/80 text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:text-accent disabled:opacity-30 md:opacity-0 md:group-hover:opacity-100"
           style={{ position: "absolute", right: "12px", top: "50%", transform: "translateY(-50%)", zIndex: 10 }}
@@ -208,12 +211,10 @@ export function Carousel({ slides, href }: CarouselProps) {
 
       {/* Progress Bar + Dots */}
       <div className="mt-4 flex items-center gap-4">
-        {/* Slide counter */}
         <span className="text-caption text-text-dim">
           {String(selectedIndex + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
         </span>
 
-        {/* Progress bar */}
         <div className="relative h-px flex-1 bg-border">
           <div
             className="absolute left-0 top-0 h-full bg-accent transition-all duration-500 ease-out"
@@ -221,7 +222,6 @@ export function Carousel({ slides, href }: CarouselProps) {
           />
         </div>
 
-        {/* Dot indicators */}
         <div className="flex gap-2">
           {slides.map((_, i) => (
             <button
