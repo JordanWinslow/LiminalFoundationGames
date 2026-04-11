@@ -9,6 +9,7 @@ export interface PressCategory {
   id: string;
   title: string;
   description: string;
+  youtubeUrl?: string;
   assets: PressAsset[];
 }
 
@@ -249,12 +250,13 @@ export const pressCategories: PressCategory[] = [
     id: "trailer",
     title: "Trailer",
     description:
-      "Official announcement trailer in full quality and web-optimized formats.",
+      "Official announcement trailer. Download the file directly or embed from YouTube.",
+    youtubeUrl: "https://youtu.be/iaC9YpJQjuM",
     assets: [
       {
         src: "/press-kit/trailer/announcement-trailer-compressed.mp4",
         filename: "announcement-trailer.mp4",
-        label: "Announcement Trailer",
+        label: "Announcement Trailer (Download)",
         type: "video",
       },
     ],

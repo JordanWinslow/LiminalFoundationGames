@@ -288,9 +288,34 @@ function CategorySection({
         </button>
       </motion.div>
 
+      {/* YouTube embed for trailer */}
+      {category.youtubeUrl && (
+        <motion.div custom={1} variants={fadeUp} className="mb-4">
+          <div className="relative aspect-video w-full border border-border bg-surface">
+            <iframe
+              src={`https://www.youtube.com/embed/${category.youtubeUrl.split("/").pop()}`}
+              title="Announcement Trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          </div>
+          <div className="mt-2 flex items-center gap-3">
+            <a
+              href={category.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-ui-sm text-muted-foreground transition-colors hover:text-accent"
+            >
+              Watch on YouTube
+            </a>
+          </div>
+        </motion.div>
+      )}
+
       {/* Asset grid */}
       <motion.div
-        custom={1}
+        custom={category.youtubeUrl ? 2 : 1}
         variants={fadeUp}
         className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
       >

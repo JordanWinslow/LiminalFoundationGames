@@ -20,6 +20,13 @@ const carouselSlides: CarouselSlide[] = [
   { src: "/images/games/scp-dlp-logo.png", alt: "SCP: Dead Letter Protocol", caption: "SCP: Dead Letter Protocol", contain: true },
   {
     video: {
+      mp4: "/press-kit/trailer/announcement-trailer-compressed.mp4",
+    },
+    alt: "Official announcement trailer",
+    caption: "Announcement Trailer",
+  },
+  {
+    video: {
       mp4: "/videos/carousel/mission-advancement.mp4",
       webm: "/videos/carousel/mission-advancement.webm",
       poster: "/videos/carousel/mission-advancement-poster.webp",

@@ -79,6 +79,27 @@ export function DLPPageClient() {
           </motion.div>
         </motion.div>
 
+        {/* Trailer */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={fadeUp}
+          custom={0}
+          className="mb-20"
+        >
+          <p className="text-label mb-4 text-accent">Announcement Trailer</p>
+          <div className="relative aspect-video w-full border border-border bg-surface">
+            <iframe
+              src="https://www.youtube.com/embed/iaC9YpJQjuM"
+              title="SCP: Dead Letter Protocol — Announcement Trailer"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 h-full w-full"
+            />
+          </div>
+        </motion.div>
+
         {/* Sections */}
         <div className="space-y-16">
           {steamSections.map((section) => (
