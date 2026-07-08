@@ -66,17 +66,6 @@ const categories: Cat[] = [
       { name: "Quarantine Protocol", effect: "−1 Agility and Defense, but Medical care is free" },
     ],
   },
-  {
-    key: "mood",
-    name: "Mood",
-    tone: "text-[#6b8cae] border-[#6b8cae]/40",
-    blurb: "Not a real condition — a live read-out of your operative's state, from your current Health and Stress.",
-    examples: [
-      { name: "Fit for Duty", effect: "Health and Stress both healthy" },
-      { name: "Exhausted", effect: "Health running low" },
-      { name: "Breaking Down", effect: "Stress near collapse" },
-    ],
-  },
 ];
 
 export function ConditionsSection() {
@@ -95,11 +84,13 @@ export function ConditionsSection() {
               <span className={cn("text-ui", c.tone.split(" ")[0])}>{c.name}</span>
             </div>
             <p className="mb-3 text-sm leading-relaxed text-muted-foreground">{c.blurb}</p>
-            <div className="space-y-1.5 border-t border-border pt-3">
+            <div className="space-y-2.5 border-t border-border pt-3">
               {c.examples.map((e) => (
-                <div key={e.name} className="flex items-baseline gap-2 text-sm">
-                  <span className="text-ui-sm shrink-0 text-foreground">{e.name}</span>
-                  <span className="leading-snug text-muted-foreground">— {e.effect}</span>
+                <div key={e.name}>
+                  <span className="text-ui-sm text-foreground">{e.name}</span>
+                  <p className="text-caption mt-0.5 leading-snug text-muted-foreground">
+                    {e.effect}
+                  </p>
                 </div>
               ))}
             </div>

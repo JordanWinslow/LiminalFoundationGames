@@ -30,13 +30,13 @@ const cards: ItemCardData[] = [
   },
   {
     id: "equipment",
-    name: "SCP-207: Cola Bottles",
+    name: "Reinforced Vest",
     type: "equipment",
-    cost: "2,200 cr",
-    art: "/images/rulebook/items/item-cola-bottles.png",
-    effects: ["+1 Action", "−1 Stress"],
+    cost: "850 cr",
+    art: "/images/rulebook/items/item-vest.png",
+    effects: ["+1 Defense", "+1 Strength", "+1 Stress"],
     description:
-      "Dark cola that doubles your metabolism. Equip it for an extra Action every cycle — but your nerves burn for it, and your Stress runs closer to the edge.",
+      "An armored vest built to turn aside physical attacks. Equip it before a hostile SCP encounter for a flat boost to Defense, Strength, and Stress that lasts as long as you wear it.",
   },
   {
     id: "consumable",
@@ -62,16 +62,15 @@ const cards: ItemCardData[] = [
   },
   {
     id: "ally",
-    name: "SCP-076-2: Able",
+    name: "SCP-181: Lucky",
     type: "ally",
     cost: "1,200 cr",
-    art: "/images/rulebook/items/item-able.png",
-    traits: ["hostile", "predatory", "sapient"],
-    destroy: 4,
-    allyHealth: 2,
-    requires: "Strength 2",
+    art: "/images/rulebook/items/item-lucky.png",
+    effects: ["+1 Defense", "+1 Agility"],
+    allyHealth: 4,
+    requires: "Agility 2",
     description:
-      "An ancient warrior wrapped in glowing tattoos who resurrects when killed. Devastating in a fight and hard to control — he only answers to an operative strong enough to hold his leash.",
+      "A D-Class with an unsettling calm, around whom events bend toward improbable outcomes. He does not fight so much as make everything go your way, steadying your Defense and Agility at his side.",
   },
   {
     id: "technology",
@@ -160,12 +159,11 @@ export function GearSection() {
 
       <Callout variant="tip" title="Traits or effects — never both" className="mt-8">
         <p>
-          Weapons, utilities, allies, and technology carry{" "}
-          <strong>traits</strong> (like <em>alive</em> or{" "}
-          <em>reality_bending</em>) that must match an SCP&apos;s own traits to
-          hit at full strength. Equipment and consumables carry{" "}
-          <strong>effects</strong> instead — stat changes and healing. No item
-          has both.
+          Weapons, utilities, and technology carry <strong>traits</strong> (like{" "}
+          <em>alive</em> or <em>reality_bending</em>) that must match an
+          SCP&apos;s own traits to hit at full strength. Equipment and consumables
+          carry <strong>effects</strong> instead — stat changes and healing.
+          Allies come both ways, but no single item carries both at once.
         </p>
       </Callout>
 
