@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { SectionHeading } from "./section-heading";
 import { ExternalLink } from "lucide-react";
 
@@ -57,33 +58,95 @@ export function CTASection() {
               <SectionHeading index="002" label="The Studio" className="mb-12" />
             </motion.div>
 
-            <div>
-              <motion.div custom={1} variants={fadeUp}>
-                <h2 className="text-display mb-8 text-4xl text-foreground md:float-left md:mr-10 md:mb-4 md:text-5xl">
-                  Games forged in
-                  <br />
-                  <span className="text-accent">the liminal dark</span>
-                </h2>
+            <div className="grid gap-12 md:grid-cols-[minmax(0,380px)_1fr] md:gap-16">
+              {/* Personnel file photo */}
+              <motion.div
+                custom={1}
+                variants={fadeUp}
+                className="mx-auto w-full max-w-[380px] self-start md:mx-0"
+              >
+                <div className="flex items-center justify-between border border-border bg-surface px-4 py-2.5">
+                  <span className="text-label text-accent">Personnel File</span>
+                  <span className="text-label text-text-dim">LF-001</span>
+                </div>
+                <div className="vfx-hover-scan relative border-x border-border">
+                  <Image
+                    src="/images/jordan-winslow.jpg"
+                    alt="Jordan Winslow, founder and sole developer of Liminal Foundation Games"
+                    width={1000}
+                    height={1778}
+                    className="w-full"
+                  />
+                </div>
+                <div className="flex items-center justify-between border border-border bg-surface px-4 py-2.5">
+                  <span className="text-label text-foreground">
+                    Jordan Winslow
+                  </span>
+                  <span className="text-label text-text-dim">
+                    Founder / Developer
+                  </span>
+                </div>
               </motion.div>
 
-              <motion.div custom={2} variants={fadeUp} className="flex flex-col gap-4">
-                <p className="leading-relaxed text-muted-foreground">
-                  I&apos;m Jordan Winslow, a solo developer. Everything you see
-                  here, from the game itself to this website and the words on
-                  it, is built by me. I&apos;ve spent over two years pouring
-                  myself into SCP: Dead Letter Protocol, handling the design,
-                  programming, VFX, narrative, and UI from the ground up.
-                </p>
-                <p className="leading-relaxed text-muted-foreground">
-                  I care about craft. Every interface is designed in Figma and
-                  built in GameMaker with pixel-perfect attention to detail.
-                  Every visual effect is hand-tuned. Every system is designed
-                  to create the kind of dread that stays with you after you
-                  close the game. If that sounds like your kind of experience,
-                  join the Discord. Your feedback directly shapes what I build
-                  next.
-                </p>
-              </motion.div>
+              {/* Story */}
+              <div>
+                <motion.div custom={2} variants={fadeUp}>
+                  <h2 className="text-display mb-8 text-4xl text-foreground md:text-5xl">
+                    Games forged in
+                    <br />
+                    <span className="text-accent">the liminal dark</span>
+                  </h2>
+                </motion.div>
+
+                <motion.div
+                  custom={3}
+                  variants={fadeUp}
+                  className="flex flex-col gap-4"
+                >
+                  <p className="leading-relaxed text-muted-foreground">
+                    I&apos;m Jordan Winslow. I&apos;ve spent my career as a{" "}
+                    <a
+                      href="https://JordanWinslow.dev"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent-hover"
+                    >
+                      front end developer
+                    </a>{" "}
+                    and more nights than I can count{" "}
+                    <a
+                      href="https://JordanWinslow.me/RoyaltyFreeMusic"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent-hover"
+                    >
+                      producing music
+                    </a>
+                    . Somewhere in between I kept making small games that
+                    almost nobody played, and I loved building every one of
+                    them.
+                  </p>
+                  <p className="leading-relaxed text-muted-foreground">
+                    There are plenty of great SCP games out there, and most of
+                    them put you in first person, face to face with something
+                    terrifying. I wanted to make a different kind of SCP game:
+                    one built around the story, where you run the Foundation
+                    instead of playing a single character, and the dread builds
+                    through the decisions you&apos;re forced to make. It became
+                    the most ambitious project I&apos;ve ever attempted, and I
+                    ended up quitting my day job to give it everything.
+                  </p>
+                  <p className="leading-relaxed text-muted-foreground">
+                    That was over two years ago. Since then I&apos;ve been
+                    working on the game roughly twelve hours a day, six or
+                    seven days a week, with very few breaks, because I want it
+                    to do the SCP universe justice. And if it succeeds,
+                    I&apos;ll get to hire a small team and keep making games
+                    about the things I love: liminal spaces, cryptids, the
+                    Backrooms, and analog horror.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
