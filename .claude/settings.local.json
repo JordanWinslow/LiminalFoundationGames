@@ -67,7 +67,19 @@
       "WebFetch(domain:steamdb.info)",
       "WebFetch(domain:www.steamcapsule.com)",
       "WebFetch(domain:www.game-oracle.com)",
-      "Bash(taskkill:*)"
+      "Bash(taskkill:*)",
+      "Bash(mkdir:*)",
+      "Bash(mv:*)",
+      "Bash(python3 -c \"import sys,json;d=json.load\\(sys.stdin\\);v=[s for s in d['streams'] if s['codec_type']=='video'][0];print\\(f\\\\\"Mobile: {v['width']}x{v['height']}, {v['r_frame_rate']}fps, {v.get\\('bit_rate','N/A'\\)}bps, codec={v['codec_name']}, duration={d['format']['duration']}s, size={int\\(d['format']['size']\\)/\\(1024*1024\\):.1f}MB\\\\\"\\)\")",
+      "PowerShell(Copy-Item *)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(npx tsc --noEmit)",
+      "Skill(run)",
+      "Bash(chromium-cli *)",
+      "Bash(npx playwright *)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\jwins\\\\LiminalFoundation\\\\public\\\\brand\", \"C:\\\\Users\\\\jwins\\\\LiminalFoundation\\\\public\\\\press-kit\" -Recurse -File -ErrorAction SilentlyContinue | Select-Object FullName, @{N='KB';E={[math]::Round\\($_.Length/1KB\\)}})",
+      "PowerShell(Add-Type -AssemblyName System.Windows.Forms; $img = [System.Windows.Forms.Clipboard]::GetImage\\(\\); if \\($img\\) { $img.Save\\(\"C:\\\\Users\\\\jwins\\\\LiminalFoundation\\\\.claude-favicon-src.png\"\\); \"saved $\\($img.Width\\)x$\\($img.Height\\)\" } else { \"no image on clipboard\" })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\jwins\\\\LiminalFoundation\\\\public\\\\images\\\\brand\" -Recurse -File | Select-Object FullName, @{N='KB';E={[math]::Round\\($_.Length/1KB\\)}})"
     ]
   }
 }

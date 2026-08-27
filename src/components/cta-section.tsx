@@ -104,45 +104,53 @@ export function CTASection() {
                   className="flex flex-col gap-4"
                 >
                   <p className="leading-relaxed text-muted-foreground">
-                    I&apos;m Jordan Winslow. I&apos;ve spent my career as a{" "}
-                    <a
-                      href="https://JordanWinslow.dev"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent-hover"
-                    >
-                      front end developer
-                    </a>{" "}
-                    and more nights than I can count{" "}
+                    My name is Jordan Winslow, thanks so much for looking at my
+                    little game studio! I&apos;ve spent most of my life as a{" "}
                     <a
                       href="https://JordanWinslow.me/RoyaltyFreeMusic"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent-hover"
                     >
-                      producing music
+                      music producer
+                    </a>{" "}
+                    (with one of the most well-known royalty free music
+                    catalogs online) and a{" "}
+                    <a
+                      href="https://JordanWinslow.dev"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:text-accent-hover"
+                    >
+                      web developer
                     </a>
-                    . Somewhere in between I kept making small games that
-                    almost nobody played, and I loved building every one of
-                    them.
+                    .
                   </p>
                   <p className="leading-relaxed text-muted-foreground">
-                    There are plenty of great SCP games out there, and most of
-                    them put you in first person, face to face with something
-                    terrifying. I wanted to make a different kind of SCP game:
-                    one built around the story, where you run the Foundation
-                    instead of playing a single character, and the dread builds
-                    through the decisions you&apos;re forced to make. It became
-                    the most ambitious project I&apos;ve ever attempted, and I
-                    ended up quitting my day job to give it everything.
+                    But I&apos;ve wanted to make games ever since I was a
+                    little kid playing Majora&apos;s Mask and imagining how I
+                    could build my own levels. I used to make popular custom
+                    games in the StarCraft engine, maps for the little-known
+                    Sacrifice by Shiny Entertainment, and plenty of unpolished,
+                    unfinished games in RPG Maker and VN Maker.
                   </p>
                   <p className="leading-relaxed text-muted-foreground">
-                    That was over two years ago. Since then I&apos;ve been
-                    working on the game roughly twelve hours a day, six or
-                    seven days a week, with very few breaks, because I want it
-                    to do the SCP universe justice. And if it succeeds,
+                    After almost ten years of professional software development
+                    I finally had the skills to make my own. So I quit my day
+                    job, and for the past two years I&apos;ve been working 8 to
+                    12 hours practically every day of the week on SCP: Dead
+                    Letter Protocol, the most ambitious thing I&apos;ve ever
+                    built.
+                  </p>
+                  <p className="leading-relaxed text-muted-foreground">
+                    There are plenty of great SCP games out there, but most of
+                    them put you in first person. Mine is highly inspired by
+                    the board game Eldritch Horror: an immersive role playing
+                    game built around story and psychological dread, where you
+                    really feel like you&apos;re in the facility while managing
+                    it from a high level strategy viewpoint. If it does well,
                     I&apos;ll get to hire a small team and keep making games
-                    about the things I love: liminal spaces, cryptids, the
+                    inspired by liminal spaces, cryptids, the SCP universe, the
                     Backrooms, and analog horror.
                   </p>
                 </motion.div>
