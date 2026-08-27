@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "npx wrangler pages deploy"
+    "deploy": "npx wrangler pages deploy out --project-name=liminal-foundation-games"
   },
   "dependencies": {
     "@base-ui/react": "^1.2.0",
