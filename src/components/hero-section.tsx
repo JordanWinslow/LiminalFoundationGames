@@ -5,9 +5,26 @@ import { motion } from "framer-motion";
 import { useTheme } from "./theme-provider";
 import { InteractiveBanner } from "./interactive-banner";
 
-// Module-level flag survives client-side navigations so the intro
-// only plays once per session (first page load).
+// Module-level flag survives client-side navigations so the intro only plays
+// on a fresh document load, not when navigating back to the homepage.
 let introPlayedOnce = false;
+
+// How long the animation stays fully visible before the site crossfades in.
+// The loop runs ~2s, so hold slightly longer to let it finish.
+const INTRO_HOLD_MS = 2200;
+// Must match the CSS opacity transition on the overlay and banner below.
+const CROSSFADE_MS = 2000;
+// Hard ceiling: if the animation has not arrived by now, reveal the site
+// anyway. The intro is decoration and must never hold the page hostage.
+// Generous enough to cover slow connections now that the file is ~800KB and
+// starts downloading from the document head with nothing competing for it.
+const INTRO_MAX_WAIT_MS = 6000;
+
+declare global {
+  interface Window {
+    __lfIntro?: { theme: string; blob: Promise<Blob> };
+  }
+}
 
 export function HeroSection() {
   const containerRef = useRef<HTMLElement>(null);
@@ -18,6 +35,7 @@ export function HeroSection() {
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [gifSrc, setGifSrc] = useState<string | null>(null);
   const gifUrlRef = useRef<string | null>(null);
+  const introStarted = useRef(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -27,50 +45,82 @@ export function HeroSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Fetch GIF as blob so animation starts from frame 0 when displayed.
-  // Wait for theme provider to mount so we fetch the correct variant.
+  // Fetch the animation as a blob so it starts from frame 0 when displayed.
+  // The document head already kicked this request off before React loaded, so
+  // reuse that in-flight promise rather than starting a second download.
   useEffect(() => {
     if (!mounted) return;
+    if (introPlayedOnce && phase === "banner") return;
 
+    // Animated WebP: same 67 frames as the source GIF at half the bytes.
     const url =
       theme === "dark"
-        ? "/images/brand/avatar-dark.gif"
-        : "/images/brand/avatar-light.gif";
+        ? "/images/brand/avatar-dark.webp"
+        : "/images/brand/avatar-light.webp";
 
-    fetch(url)
-      .then((res) => res.blob())
+    const preloaded = window.__lfIntro;
+    const pending =
+      preloaded && preloaded.theme === theme
+        ? preloaded.blob
+        : fetch(url).then((res) => res.blob());
+
+    let cancelled = false;
+    pending
       .then((blob) => {
+        if (cancelled) return;
         if (gifUrlRef.current) URL.revokeObjectURL(gifUrlRef.current);
         const blobUrl = URL.createObjectURL(blob);
         gifUrlRef.current = blobUrl;
         setGifSrc(blobUrl);
       })
       .catch(() => {
-        setGifSrc(url);
+        if (!cancelled) setGifSrc(url);
       });
 
     return () => {
+      cancelled = true;
       if (gifUrlRef.current) {
         URL.revokeObjectURL(gifUrlRef.current);
         gifUrlRef.current = null;
       }
     };
+    // `phase` is read only as a guard against refetching after the intro is
+    // over; re-running on every phase change would restart the download.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme, mounted]);
 
-  // Start timers only on first load — skip intro on client-side navigations back
+  // Safety net: reveal the site even if the animation never arrives, so a slow
+  // connection is never stuck staring at a blank overlay.
+  useEffect(() => {
+    if (introPlayedOnce) return;
+    const bail = setTimeout(() => {
+      if (introStarted.current) return;
+      introStarted.current = true;
+      introPlayedOnce = true;
+      setPhase("banner");
+    }, INTRO_MAX_WAIT_MS);
+    return () => clearTimeout(bail);
+  }, []);
+
+  // Play the intro once the animation is decoded. Skips entirely on
+  // client-side navigations back to the homepage.
   useEffect(() => {
     if (!gifSrc) return;
-    if (introPlayedOnce) {
+    if (introPlayedOnce || introStarted.current) {
       setPhase("banner");
       return;
     }
+    introStarted.current = true;
     introPlayedOnce = true;
     setPhase("gif");
-    const timer1 = setTimeout(() => setPhase("crossfade"), 1000);
-    const timer2 = setTimeout(() => setPhase("banner"), 3000);
+    const toCrossfade = setTimeout(() => setPhase("crossfade"), INTRO_HOLD_MS);
+    const toBanner = setTimeout(
+      () => setPhase("banner"),
+      INTRO_HOLD_MS + CROSSFADE_MS
+    );
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
+      clearTimeout(toCrossfade);
+      clearTimeout(toBanner);
     };
   }, [gifSrc]);
 
@@ -178,7 +228,12 @@ export function HeroSection() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: scrolledPastHero ? 0 : 1 }}
-        transition={{ delay: scrolledPastHero ? 0 : 3.5, duration: scrolledPastHero ? 0.3 : 1 }}
+        transition={{
+          // Hold until the intro crossfade has finished so it doesn't
+          // surface over the animation.
+          delay: scrolledPastHero ? 0 : (INTRO_HOLD_MS + CROSSFADE_MS) / 1000,
+          duration: scrolledPastHero ? 0.3 : 1,
+        }}
         className="pointer-events-none fixed bottom-6 left-1/2 z-[26] -translate-x-1/2"
       >
         <div className="animate-bounce-slow flex flex-col items-center gap-2">

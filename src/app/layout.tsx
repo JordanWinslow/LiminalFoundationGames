@@ -58,12 +58,24 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                var theme = 'dark';
                 try {
-                  var theme = localStorage.getItem('lf-theme');
-                  if (theme === 'light') {
+                  if (localStorage.getItem('lf-theme') === 'light') {
+                    theme = 'light';
                     document.documentElement.setAttribute('data-theme', 'light');
                     document.documentElement.classList.remove('dark');
                   }
+                } catch(e) {}
+                // Start the intro animation download here, before React or any
+                // other asset can compete for bandwidth. The hero awaits this
+                // promise, so the intro is ready as early as the network allows.
+                try {
+                  var p = fetch('/images/brand/avatar-' + theme + '.webp')
+                    .then(function(r) { return r.blob(); });
+                  // The hero attaches its own handler once React loads; this
+                  // keeps a network failure from logging as unhandled first.
+                  p.catch(function() {});
+                  window.__lfIntro = { theme: theme, blob: p };
                 } catch(e) {}
               })();
             `,

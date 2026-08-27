@@ -127,6 +127,11 @@ function AssetThumb({
   asset: PressAsset;
   onClick: () => void;
 }) {
+  // Social GIFs run to ~14MB each, far too heavy for a grid thumbnail, so
+  // they preview through their paired mp4 and only load on open.
+  const previewSrc = asset.previewSrc ?? asset.src;
+  const usesVideoPreview = asset.type === "video" || !!asset.previewSrc;
+
   return (
     <div className="group relative border border-border bg-card/50 transition-colors hover:border-accent/60">
       {/* Preview area */}
@@ -136,9 +141,9 @@ function AssetThumb({
         aria-label={`View ${asset.label}`}
       >
         <div className="relative aspect-video w-full bg-surface">
-          {asset.type === "video" ? (
+          {usesVideoPreview ? (
             <video
-              src={asset.src}
+              src={previewSrc}
               muted
               playsInline
               preload="metadata"
@@ -154,6 +159,7 @@ function AssetThumb({
               src={asset.src}
               alt={asset.label}
               fill
+              loading="lazy"
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />

@@ -47,6 +47,7 @@ export function Header() {
               alt="Liminal Foundation"
               width={32}
               height={32}
+              priority
               className="h-8 w-8 object-contain transition-transform duration-500 group-hover:scale-110"
             />
           </div>

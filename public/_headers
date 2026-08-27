@@ -1,0 +1,26 @@
+# Cloudflare cache rules. Files in public/ are copied to the build output
+# root, so this lands at out/_headers where Cloudflare picks it up.
+#
+# Without this, Cloudflare Pages serves every asset with
+# `Cache-Control: public, max-age=0, must-revalidate`, which forces browsers
+# to re-check each image on every visit and lets the edge evict large files
+# quickly (they then come from origin at a fraction of edge speed).
+#
+# Media filenames are not content-hashed, so these use a long-but-finite
+# max-age rather than `immutable`. Rename a file to bust its cache early.
+
+/images/*
+  Cache-Control: public, max-age=2592000
+
+/videos/*
+  Cache-Control: public, max-age=2592000
+
+/press-kit/*
+  Cache-Control: public, max-age=2592000
+
+# Next.js fingerprints these filenames, so they can never go stale.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable

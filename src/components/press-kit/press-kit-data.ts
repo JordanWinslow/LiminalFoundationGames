@@ -3,6 +3,12 @@ export interface PressAsset {
   filename: string;
   label: string;
   type: "image" | "video" | "gif";
+  /**
+   * Lightweight stand-in for the grid thumbnail. The social GIFs are
+   * multi-megabyte download assets, so the grid previews the paired mp4
+   * (metadata only) and the GIF itself is fetched only when opened.
+   */
+  previewSrc?: string;
 }
 
 export interface PressCategory {
@@ -83,6 +89,7 @@ export const pressCategories: PressCategory[] = [
         filename: "redaction-social.gif",
         label: "Redaction (Social GIF)",
         type: "gif",
+        previewSrc: "/press-kit/videos/redaction.mp4",
       },
       {
         src: "/press-kit/videos/combat.mp4",
@@ -95,6 +102,7 @@ export const pressCategories: PressCategory[] = [
         filename: "combat-social.gif",
         label: "Combat (Social GIF)",
         type: "gif",
+        previewSrc: "/press-kit/videos/combat.mp4",
       },
       {
         src: "/press-kit/videos/game-end.mp4",
@@ -107,6 +115,7 @@ export const pressCategories: PressCategory[] = [
         filename: "game-end-social.gif",
         label: "Game End (Social GIF)",
         type: "gif",
+        previewSrc: "/press-kit/videos/game-end.mp4",
       },
       {
         src: "/press-kit/videos/mission-advancement.mp4",
@@ -119,6 +128,7 @@ export const pressCategories: PressCategory[] = [
         filename: "mission-advancement-social.gif",
         label: "Mission Advancement (Social GIF)",
         type: "gif",
+        previewSrc: "/press-kit/videos/mission-advancement.mp4",
       },
       {
         src: "/press-kit/videos/phases.mp4",
@@ -131,6 +141,7 @@ export const pressCategories: PressCategory[] = [
         filename: "phases-social.gif",
         label: "Game Phases (Social GIF)",
         type: "gif",
+        previewSrc: "/press-kit/videos/phases.mp4",
       },
     ],
   },
