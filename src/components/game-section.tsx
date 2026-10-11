@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { SectionHeading } from "./section-heading";
 import { Carousel } from "./carousel";
+import { JohnnyCastawayCard } from "./games/johnny-castaway-card";
 
 const featureTags = [
   "Strategic horror built around the hour-long run. Play it once to see what happens. Play it again because now you know what went wrong",
@@ -200,6 +201,7 @@ export function GameSection() {
             </div>
           </motion.div>
         </motion.div>
+        <JohnnyCastawayCard />
       </div>
     </section>
   );
