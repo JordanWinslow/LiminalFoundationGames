@@ -63,7 +63,7 @@ const features = [
 
 export default function JohnnyCastawayPage() {
   return (
-    <article className="mx-auto max-w-[1400px] px-5 pb-20 pt-32 [--font-display:var(--font-bebas-neue)] sm:px-6 md:px-10 md:pb-28">
+    <article className="mx-auto max-w-[1400px] px-5 pb-20 pt-36 [--font-display:var(--font-bebas-neue)] min-[360px]:pt-32 sm:px-6 md:px-10 md:pb-28">
       <Link href="/#games" className={`text-ui mb-5 inline-flex min-h-10 items-center gap-2 text-muted-foreground hover:text-foreground ${focusRing}`}>
         <ArrowLeft className="h-4 w-4" aria-hidden="true" /> All games
       </Link>
@@ -94,7 +94,7 @@ export default function JohnnyCastawayPage() {
         <div className="grid gap-x-6 gap-y-9 md:grid-cols-2">
           {screenshots.map((shot, index) => (
             <figure key={shot.file}>
-              <a href={`${imageRoot}/${shot.file}`} target="_blank" rel="noopener noreferrer" className={`group relative block overflow-hidden border border-border bg-card hover:border-accent ${focusRing}`} aria-label={`Open full screenshot in a new tab: ${shot.caption}`}>
+              <a href={`${imageRoot}/${shot.file}`} target="_blank" rel="noopener noreferrer" className={`group relative block scroll-mt-40 overflow-hidden border border-border bg-card hover:border-accent ${focusRing}`} aria-label={`Open full screenshot in a new tab: ${shot.caption}`}>
                 <Image src={`${imageRoot}/${shot.file}`} alt={shot.alt} width={960} height={540} sizes="(max-width: 767px) 100vw, (max-width: 1400px) 50vw, 648px" className="aspect-video h-auto w-full object-contain" />
                 <span className="absolute bottom-3 right-3 border border-white/30 bg-black/70 p-2 text-white" aria-hidden="true"><Expand className="h-4 w-4" /></span>
               </a>
